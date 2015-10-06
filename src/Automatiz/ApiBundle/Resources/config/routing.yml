@@ -1,0 +1,8 @@
+automatiz_form:
+    resource: Automatiz\ApiBundle\Controller\CocktailController
+    prefix: cocktail/
+
+automatiz_api:
+    resource: Automatiz\ApiBundle\Controller\CocktailApiController
+    type: rest
+    prefix: /api/cocktail/
