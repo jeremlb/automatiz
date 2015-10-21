@@ -1,10 +1,2 @@
 automatiz_api:
     resource: "@AutomatizApiBundle/Resources/config/routing.yml"
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
-books:
-    type:     rest
-    resource: AppBundle\Controller\BookController

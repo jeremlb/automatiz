@@ -1,88 +1,52 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: jeremi
+ * Date: 08/10/15
+ * Time: 08:59
+ */
 
-namespace Automatiz\ApiBundle\Entity;
+namespace Automatiz\ApiBundle\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Annotation as Serializer;
+
 
 /**
  * Cocktail
- * @ORM\Entity(repositoryClass="Automatiz\ApiBundle\Entity\CocktailRepository")
- * @ORM\Table("cocktail")
- * @ORM\HasLifecycleCallbacks()
- *
  *
  */
-class Cocktail
+abstract class AbstractCocktail
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="id", type="string", length=13)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator")
-     *
+     * @var integer
      */
-
     private $id;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="has_alcoohol", type="boolean")
      */
     private $has_alcoohol;
-
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
-
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="note", type="smallint")
      */
     private $note;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Step", mappedBy="cocktail", cascade={"persist"})
-     */
-
-    private $steps;
-
-    public function __construct()
-    {
-        $this->steps = new ArrayCollection();
-    }
-    /**
-     * Get id
+     * Get Id
      *
      * @return string
      */
@@ -95,7 +59,6 @@ class Cocktail
      * Set name
      *
      * @param string $name
-     *
      * @return Cocktail
      */
     public function setName($name)
@@ -122,10 +85,9 @@ class Cocktail
      *
      * @return Cocktail
      */
-    public function setHasAlcoohol($alcoohol)
+    public function setHasAlcoohol($hasAlcoohol)
     {
-        $this->has_alcoohol = $alcoohol;
-
+        $this->has_alcoohol = $hasAlcoohol;
         return $this;
     }
 
@@ -149,7 +111,6 @@ class Cocktail
     protected function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -233,48 +194,5 @@ class Cocktail
     public function getDescription()
     {
         return $this->description;
-    }
-
-
-    public function addStep(Step $step)
-    {
-        $this->steps[] = $step;
-
-        $step->setCocktail($this);
-
-        return $this;
-    }
-
-    public function removeStep(Step $step)
-    {
-        $this->steps->removeElement($step);
-    }
-
-    public function getSteps()
-    {
-        return $this->steps;
-    }
-
-
-    /**
-     * Set the Datetime of the insertion into the Database
-     * @ORM\PreUpdate()
-     *
-     */
-    public function preUpdate()
-    {
-        $this->setUpdatedAt(new \DateTime());
-    }
-
-    /**
-     * Set the Datetime of the insertion into the Database
-     * @ORM\PrePersist()
-     *
-     */
-    public function prePersist()
-    {
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
-        $this->setNote(0);
     }
 }

@@ -81,8 +81,8 @@ swiftmailer:
     spool:     { type: memory }
 
 sensio_framework_extra:
-    view:
-        annotations: false
+  view: { annotations: false }
+  router: { annotations: true }
 
 fos_rest:
     param_fetcher_listener: true
@@ -91,10 +91,7 @@ fos_rest:
     view:
         view_response_listener: 'force'
         formats:
-            xml: true
             json : true
-        templating_formats:
-            html: true
         force_redirects:
             html: true
         failed_validation: HTTP_BAD_REQUEST

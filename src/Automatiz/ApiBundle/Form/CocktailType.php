@@ -16,11 +16,8 @@ class CocktailType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('alcoohol')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('note')
             ->add('description')
+            ->add('steps')
         ;
     }
     
@@ -30,7 +27,8 @@ class CocktailType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Automatiz\ApiBundle\Entity\Cocktail'
+            'data_class' => 'Automatiz\ApiBundle\Entity\Cocktail',
+            'csrf_protection' => false
         ));
     }
 
@@ -39,6 +37,6 @@ class CocktailType extends AbstractType
      */
     public function getName()
     {
-        return 'automatiz_apibundle_cocktail';
+        return 'cocktail';
     }
 }

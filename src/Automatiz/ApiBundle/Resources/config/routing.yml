@@ -2,7 +2,16 @@ automatiz_form:
     resource: Automatiz\ApiBundle\Controller\CocktailController
     prefix: cocktail/
 
-automatiz_api:
-    resource: Automatiz\ApiBundle\Controller\CocktailApiController
-    type: rest
-    prefix: /api/cocktail/
+acme_demo_user_all:
+    pattern:  /api/cocktails
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:all, _format: json }
+    requirements:
+        _method: GET
+
+acme_demo_user_get:
+    pattern:  /api/cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:get, _format: json }
+    requirements:
+        _method: GET
+        id: "[a-z0-9]{13}"
+

@@ -1,0 +1,23 @@
+Automatiz\ApiBundle\Entity\Step:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [steps]
+        description:
+            expose: true
+            groups: [steps]
+        quantity:
+            expose: true
+            groups: [steps]
+        liquid:
+            expose: true
+            type: string
+            accessor:
+                getter: getLiquid
+                setter: setLiquid
+            groups: [steps]
+        addIce:
+            expose: true
+            serialized_name: addIce
+            groups: [steps]

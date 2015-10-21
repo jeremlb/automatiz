@@ -2,3 +2,7 @@ services:
 #    automatiz_api.example:
 #        class: Automatiz\ApiBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+     automatiz_api.cocktail_manager:
+         class: Automatiz\ApiBundle\Services\CocktailProvider
+         arguments: [@doctrine.orm.entity_manager]
