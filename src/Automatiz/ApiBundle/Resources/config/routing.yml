@@ -1,17 +1,36 @@
-automatiz_form:
-    resource: Automatiz\ApiBundle\Controller\CocktailController
-    prefix: cocktail/
+cocktail_all:
+    path:  /api/cocktails
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:all, _format: json}
+    methods: [GET]
 
-acme_demo_user_all:
-    pattern:  /api/cocktails
-    defaults: { _controller: AutomatizApiBundle:CocktailApi:all, _format: json }
+cocktail_get:
+    path:  /api/cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:get, _format: json}
+    methods: [GET]
     requirements:
-        _method: GET
-
-acme_demo_user_get:
-    pattern:  /api/cocktails/{id}
-    defaults: { _controller: AutomatizApiBundle:CocktailApi:get, _format: json }
-    requirements:
-        _method: GET
         id: "[a-z0-9]{13}"
 
+cocktail_post:
+    path:  /api/cocktail
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:new, _format: json}
+    methods: [POST]
+
+cocktail_all_steps:
+    path:  /api/cocktails/{cocktailId}/steps
+    defaults: { _controller: AutomatizApiBundle:StepApi:all, _format: json}
+    methods: [GET]
+    requirements:
+        cocktailId: "[a-z0-9]{13}"
+
+cocktail_post_steps:
+    path:  /api/cocktails/{cocktailId}/steps
+    defaults: { _controller: AutomatizApiBundle:StepApi:post, _format: json}
+    methods: [POST]
+    requirements:
+        cocktailId: "[a-z0-9]{13}"
+
+
+cocktail_get_findbyname:
+    path:  /api/cocktails/findbyname
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:findbyname, _format: json}
+    methods: [GET]

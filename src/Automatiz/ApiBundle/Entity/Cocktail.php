@@ -38,7 +38,7 @@ class Cocktail
     /**
      * @var string
      *
-     * @ORM\Column(name="has_alcoohol", type="boolean")
+     * @ORM\Column(name="has_alcoohol", type="boolean", nullable=true)
      */
     private $has_alcoohol;
 
@@ -235,21 +235,30 @@ class Cocktail
         return $this->description;
     }
 
-
+    /**
+     * @param Step $step
+     * @return $this
+     */
     public function addStep(Step $step)
     {
-        $this->steps[] = $step;
+        $this->steps->add($step);
 
         $step->setCocktail($this);
 
         return $this;
     }
 
+    /**
+     * @param Step $step
+     */
     public function removeStep(Step $step)
     {
         $this->steps->removeElement($step);
     }
 
+    /**
+     * @return ArrayCollection
+     */
     public function getSteps()
     {
         return $this->steps;
@@ -267,6 +276,7 @@ class Cocktail
     }
 
     /**
+
      * Set the Datetime of the insertion into the Database
      * @ORM\PrePersist()
      *
@@ -276,5 +286,9 @@ class Cocktail
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
         $this->setNote(0);
+    }
+
+    public function __toString() {
+        return $this->getName()." ".$this->getDescription();
     }
 }

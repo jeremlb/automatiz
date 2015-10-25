@@ -12,5 +12,18 @@ use Doctrine\ORM\EntityRepository;
 
 class CocktailRepository extends EntityRepository
 {
+    public function findAllByName($name)
+    {
+        $qb = $this->createQueryBuilder('c');
 
+        $qb->where($qb->expr()->like('LOWER(c.name)', '?1'));
+
+
+
+        return $qb
+            ->setParameter(1, "%".strtolower($name)."%")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
