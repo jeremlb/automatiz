@@ -26,3 +26,11 @@ Automatiz\ApiBundle\Entity\Cocktail:
         steps:
             expose: true
             groups: [details]
+    relations:
+        -
+            rel: self
+            href:
+                route: cocktail_get
+                parameters:
+                    id: expr(object.id)
+                absolute: true

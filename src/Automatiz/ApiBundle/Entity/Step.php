@@ -192,5 +192,37 @@ class Step
     {
         return $this->cocktail;
     }
+
+    public function toString()
+    {
+        return $this->getDescription();
+    }
+
+
+    public function getAddIceSerialize() {
+        if($this->getQuantity() != 0 && $this->getLiquid() != "") {
+            return null;
+        } else {
+            return $this->getAddIce();
+        }
+    }
+
+
+    public function getLiquidSerialize() {
+        if($this->getAddIce() != false) {
+            return null;
+        } else {
+            return $this->getLiquid();
+        }
+    }
+
+
+    public function getQuantitySerialize() {
+        if($this->getAddIce() != false) {
+            return null;
+        } else {
+            return $this->getQuantity();
+        }
+    }
 }
 
