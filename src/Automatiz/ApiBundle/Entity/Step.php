@@ -224,5 +224,10 @@ class Step
             return $this->getQuantity();
         }
     }
+
+    public function __toString()
+    {
+        return "".$this->getId();
+    }
 }
 

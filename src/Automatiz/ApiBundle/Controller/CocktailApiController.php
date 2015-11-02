@@ -17,7 +17,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CocktailApiController extends Controller
 {
@@ -27,7 +27,11 @@ class CocktailApiController extends Controller
     public function allAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAll();
+        if($request->query->get('name') !== null) {
+            $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
+        } else {
+            $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAll();
+        }
 
         return array('cocktails' => $cocktails);
     }
@@ -37,12 +41,7 @@ class CocktailApiController extends Controller
      */
     public function getAction(Request $request, $id) {
 
-        $em = $this->get('doctrine')->getManager();
-        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
-
-        if (!$cocktail instanceof Cocktail) {
-            throw new NotFoundHttpException('User not found');
-        }
+        $cocktail = $this->getCocktail($id);
 
         return array('cocktail' => $cocktail);
     }
@@ -55,49 +54,68 @@ class CocktailApiController extends Controller
      */
     public function newAction(Request $request)
     {
-        $logger = $this->get('logger');
-
-        $logger->info($request->getContent());
-
         return $this->processForm($request, new Cocktail());
     }
 
-    private function processForm(Request $request, Cocktail $cocktail)
+    public function editAction(Request $request, $id)
     {
-        $logger = $this->get('logger');
+        $cocktail = $this->getCocktail($id);
 
-        $form = $this->createForm(new CocktailType(), $cocktail);
-        $form->handleRequest($request);
+        return $this->processForm($request, $cocktail);
+    }
 
-        $logger->info($form->getName());
-        $logger->info($form->isValid());
-        $logger->info($cocktail);
+    /**
+     * @Rest\View(statusCode=204)
+     */
+    public function removeAction(Request $request, $id)
+    {
+        $cocktail = $this->getCocktail($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-
-            $em->persist($cocktail);
-            $em->flush();
-            return array('cocktail' => $cocktail);
-        }
-
-        return View::create($form, 400);
-
+        $em = $this->get('doctrine')->getManager();
+        $em->remove($cocktail);
+        $em->flush();
     }
 
     /**
      * @param Request $request
-     * @return array
-     * @Rest\View(serializerGroups={"default"})
+     * @param Cocktail $cocktail
+     * @return View|Response
      */
-    public function findbynameAction(Request $request)
+    private function processForm(Request $request, Cocktail $cocktail)
     {
-        $logger = $this->get('logger');
-        $logger->info($request->query->get('name'));
+        $form = $this->createForm(new CocktailType(), $cocktail, array('method' => $request->getMethod()));
+        $form->handleRequest($request);
 
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($cocktail);
+            $em->flush();
+
+            $statusCode = ($cocktail->isNew())? 201: 204;
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            if ($cocktail->isNew()) {
+                $response->headers->set(
+                    'Location',
+                    $this->generateUrl('cocktail_get', array('id' => $cocktail->getId()), true));
+            }
+
+            return $response;
+        }
+
+        return View::create($form, 400);
+    }
+
+    private function getCocktail($id)
+    {
         $em = $this->get('doctrine')->getManager();
-        $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
+        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
 
-        return array('cocktails' => $cocktails);
+        if (!$cocktail instanceof Cocktail) {
+            throw new NotFoundHttpException('Cocktail not found');
+        }
+
+        return $cocktail;
     }
 }

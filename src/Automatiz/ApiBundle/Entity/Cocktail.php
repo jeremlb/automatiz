@@ -56,6 +56,7 @@ class Cocktail
      */
     private $updatedAt;
 
+
     /**
      * @var integer
      *
@@ -72,7 +73,7 @@ class Cocktail
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Step", mappedBy="cocktail", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Step", mappedBy="cocktail", cascade={"persist", "merge", "remove"})
      */
 
     private $steps;
@@ -81,6 +82,13 @@ class Cocktail
     {
         $this->steps = new ArrayCollection();
     }
+
+
+    public function isNew()
+    {
+        return ($this->getCreatedAt() == $this->getUpdatedAt())? true: false;
+    }
+
     /**
      * Get id
      *

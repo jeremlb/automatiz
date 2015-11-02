@@ -11,9 +11,23 @@ cocktail_get:
         id: "[a-z0-9]{13}"
 
 cocktail_post:
-    path:  /api/cocktail
+    path:  /api/cocktails
     defaults: { _controller: AutomatizApiBundle:CocktailApi:new, _format: json}
     methods: [POST]
+
+cocktail_put:
+    path:  /api/cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:edit, _format: json}
+    methods: [PUT]
+    requirements:
+        id: "[a-z0-9]{13}"
+
+cocktail_delete:
+    path:  /api/cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:remove, _format: json}
+    methods: [DELETE]
+    requirements:
+        id: "[a-z0-9]{13}"
 
 cocktail_all_steps:
     path:  /api/cocktails/{cocktailId}/steps
@@ -28,9 +42,3 @@ cocktail_post_steps:
     methods: [POST]
     requirements:
         cocktailId: "[a-z0-9]{13}"
-
-
-cocktail_get_findbyname:
-    path:  /api/cocktails/findbyname
-    defaults: { _controller: AutomatizApiBundle:CocktailApi:findbyname, _format: json}
-    methods: [GET]

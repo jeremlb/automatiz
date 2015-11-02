@@ -1,0 +1,12 @@
+Automatiz\ApiBundle\Entity\Cocktail:
+    properties:
+        name:
+            - NotBlank: ~
+        description:
+            - NotBlank: ~
+
+
+Automatiz\ApiBundle\Entity\Step:
+    properties:
+        description:
+            - NotBlank: ~
