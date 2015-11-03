@@ -1,0 +1,4 @@
+user_all:
+    path:  users
+    defaults: { _controller: AutomatizApiBundle:UserApi:all, _format: json}
+    methods: [GET]

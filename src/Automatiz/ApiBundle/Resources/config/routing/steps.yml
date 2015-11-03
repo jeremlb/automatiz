@@ -1,0 +1,13 @@
+steps_all:
+    path:  cocktails/{cocktailId}/steps
+    defaults: { _controller: AutomatizApiBundle:StepApi:all, _format: json}
+    methods: [GET]
+    requirements:
+        cocktailId: "[a-z0-9]{13}"
+
+steps_post:
+    path:  cocktails/{cocktailId}/steps
+    defaults: { _controller: AutomatizApiBundle:StepApi:post, _format: json}
+    methods: [POST]
+    requirements:
+        cocktailId: "[a-z0-9]{13}"

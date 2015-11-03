@@ -1,0 +1,30 @@
+cocktail_all:
+    path:  cocktails
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:all, _format: json}
+    methods: [GET]
+
+cocktail_post:
+    path:  cocktails
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:new, _format: json}
+    methods: [POST]
+
+cocktail_get:
+    path:  cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:get, _format: json}
+    methods: [GET]
+    requirements:
+        id: "[a-z0-9]{13}"
+
+cocktail_put:
+    path:  cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:edit, _format: json}
+    methods: [PUT]
+    requirements:
+        id: "[a-z0-9]{13}"
+
+cocktail_delete:
+    path:  cocktails/{id}
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:remove, _format: json}
+    methods: [DELETE]
+    requirements:
+        id: "[a-z0-9]{13}"

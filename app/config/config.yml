@@ -104,6 +104,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Automatiz\UserBundle\Entity\User
+    group:
+        group_class: Automatiz\UserBundle\Entity\Group
 
 fos_oauth_server:
     db_driver:           orm
@@ -114,7 +116,7 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
         options:
-          supported_scopes: scope1 scope2
+          supported_scopes: cocktails users
 
 jms_serializer:
     metadata:

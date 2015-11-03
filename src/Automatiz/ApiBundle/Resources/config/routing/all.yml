@@ -1,0 +1,12 @@
+user_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/users.yml"
+
+me_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/me.yml"
+
+cocktail_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/cocktails.yml"
+
+step_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/steps.yml"
+

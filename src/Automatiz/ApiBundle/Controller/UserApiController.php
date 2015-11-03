@@ -15,20 +15,23 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 use Automatiz\UserBundle\Entity\User;
 
 class UserApiController extends Controller
 {
-    /**
-
-     */
     public function allAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $currentUser = $this->getUser();
 
-        $users = $em->getRepository('AutomatizApiBundle:User')->findAll();
+        if($currentUser->hasRole("ADMIN")) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $users = $em->getRepository('AutomatizUserBundle:User')->findAll();
 
-        return array('users' => $users[0]);
+            return array('users' => $users);
+        } else {
+            throw new UnauthorizedHttpException("Not admin");
+        }
     }
 }
