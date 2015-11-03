@@ -19,13 +19,16 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 class CocktailApiController extends Controller
 {
     /**
-     * @Rest\View(serializerGroups={"default"})
+     * @Rest\View(serializerGroups={"default", "defaultuser"})
      */
     public function allAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
+
+        $logger = $this->get("logger");
 
         if($request->query->get('name') !== null) {
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
@@ -43,6 +46,8 @@ class CocktailApiController extends Controller
 
         $cocktail = $this->getCocktail($id);
 
+        $this->get("logger")->info($cocktail->getUser());
+
         return array('cocktail' => $cocktail);
     }
 
@@ -54,7 +59,7 @@ class CocktailApiController extends Controller
      */
     public function newAction(Request $request)
     {
-        return $this->processForm($request, new Cocktail());
+        return $this->processForm($request, new Cocktail($this->getUser()));
     }
 
     public function editAction(Request $request, $id)

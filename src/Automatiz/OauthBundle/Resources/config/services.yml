@@ -1,0 +1,4 @@
+services:
+#    automatiz_oauth.example:
+#        class: Automatiz\OauthBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

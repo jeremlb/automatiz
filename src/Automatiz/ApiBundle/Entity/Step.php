@@ -51,7 +51,6 @@ class Step
      */
     private $addIce;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Cocktail", inversedBy="steps")
      * @ORM\JoinColumn(name="cocktail_id", referencedColumnName="id")

@@ -42,3 +42,8 @@ cocktail_post_steps:
     methods: [POST]
     requirements:
         cocktailId: "[a-z0-9]{13}"
+
+user_all:
+    path:  /api/users
+    defaults: { _controller: AutomatizApiBundle:UserApi:all, _format: json}
+    methods: [GET]

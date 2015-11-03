@@ -5,6 +5,7 @@ namespace Automatiz\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
+use Automatiz\ApiBundle\Entity\User;
 
 /**
  * Cocktail
@@ -78,11 +79,19 @@ class Cocktail
 
     private $steps;
 
-    public function __construct()
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Automatiz\UserBundle\Entity\User", inversedBy="cocktails")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    public function __construct(User $user)
     {
         $this->steps = new ArrayCollection();
+        $this->user = $user;
     }
-
 
     public function isNew()
     {
@@ -272,6 +281,10 @@ class Cocktail
         return $this->steps;
     }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
 
     /**
      * Set the Datetime of the insertion into the Database

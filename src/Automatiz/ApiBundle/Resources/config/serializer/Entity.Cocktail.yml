@@ -26,6 +26,9 @@ Automatiz\ApiBundle\Entity\Cocktail:
         steps:
             expose: true
             groups: [details]
+        user:
+            expose: true
+            groups: [details]
     relations:
         -
             rel: self
