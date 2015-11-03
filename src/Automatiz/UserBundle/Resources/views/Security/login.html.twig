@@ -1,5 +1,6 @@
 {% extends "AutomatizUserBundle::layout.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
 {% if error %}
@@ -19,6 +20,4 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
-
-    TEST
 {% endblock fos_user_content %}

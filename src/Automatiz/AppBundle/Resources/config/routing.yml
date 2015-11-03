@@ -1,0 +1,11 @@
+automatiz_homepage:
+    path:     /
+    defaults: { _controller: AutomatizAppBundle:Default:index }
+
+automatiz_app:
+    path:     /app
+    defaults: { _controller: AutomatizAppBundle:Default:app }
+
+automatiz_admin:
+    path:     /admin
+    defaults: { _controller: AutomatizAppBundle:Default:admin }

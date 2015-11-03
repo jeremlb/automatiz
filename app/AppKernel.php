@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Automatiz\ApiBundle\AutomatizApiBundle(),
             new Automatiz\OauthBundle\AutomatizOauthBundle(),
             new Automatiz\UserBundle\AutomatizUserBundle(),
+            new Automatiz\AppBundle\AutomatizAppBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

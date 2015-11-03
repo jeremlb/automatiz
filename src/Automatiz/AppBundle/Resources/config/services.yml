@@ -1,0 +1,4 @@
+services:
+#    automatiz_app.example:
+#        class: Automatiz\AppBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

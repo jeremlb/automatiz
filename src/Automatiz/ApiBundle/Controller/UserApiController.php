@@ -25,13 +25,13 @@ class UserApiController extends Controller
     {
         $currentUser = $this->getUser();
 
-        if($currentUser->hasRole("ADMIN")) {
+        if($currentUser->hasRole("ROLE_ADMIN")) {
             $em = $this->getDoctrine()->getEntityManager();
             $users = $em->getRepository('AutomatizUserBundle:User')->findAll();
 
             return array('users' => $users);
         } else {
-            throw new UnauthorizedHttpException("Not admin");
+            throw new UnauthorizedHttpException("not admin", "Resources not allowed.");
         }
     }
 }

@@ -1,3 +1,7 @@
+automatiz_app:
+    resource: "@AutomatizAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
 automatiz_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/all.yml"
     prefix: /api

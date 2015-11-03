@@ -48,6 +48,10 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/app, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, role: ROLE_ADMIN }
+
         - { path: ^/api/cocktails, role: ROLE_COCKTAILS }
         - { path: ^/api/steps, role: ROLE_COCKTAILS }
         - { path: ^/api/users, role: ROLE_USER }
