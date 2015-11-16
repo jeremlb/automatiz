@@ -10,3 +10,11 @@ Automatiz\ApiBundle\Entity\Step:
     properties:
         description:
             - NotBlank: ~
+
+Automatiz\ApiBundle\Entity\CocktailImage:
+    properties:
+        file:
+            - NotBlank: ~
+            - File:
+                maxSize: 1024k
+                mimeTypes: [image/jpeg, image/png]

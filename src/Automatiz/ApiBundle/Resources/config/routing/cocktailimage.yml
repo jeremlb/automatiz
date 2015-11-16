@@ -1,0 +1,5 @@
+
+cocktail_post:
+    path:  cocktails/image
+    defaults: { _controller: AutomatizApiBundle:CocktailImageApi:new, _format: json}
+    methods: [POST, GET]

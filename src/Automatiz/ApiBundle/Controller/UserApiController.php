@@ -21,6 +21,12 @@ use Automatiz\UserBundle\Entity\User;
 
 class UserApiController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return array
+     *
+     * @Rest\View(serializerGroups={"list"})
+     */
     public function allAction(Request $request)
     {
         $currentUser = $this->getUser();

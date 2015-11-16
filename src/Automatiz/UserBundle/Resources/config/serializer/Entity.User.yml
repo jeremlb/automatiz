@@ -3,4 +3,4 @@ Automatiz\UserBundle\Entity\User:
     properties :
       id :
         expose : true
-        groups: [details, me]
+        groups: [details, me, list]
