@@ -11,17 +11,23 @@
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     <div class="group">
         <input type="text" id="username" name="_username" required="required" ><span class="highlight"></span><span class="bar"></span>
-        <label>{{ 'security.login.username'|trans }}</label>
+        <label class="label--other ">{{ 'security.login.username'|trans }}</label>
     </div>
     <div class="group">
         <input type="password"  id="password" name="_password" required="required" ><span class="highlight"></span><span class="bar"></span>
-        <label>{{ 'security.login.password'|trans }}</label>
+        <label class="label--other ">{{ 'security.login.password'|trans }}</label>
+    </div>
+    <div class="remember-me">
+        <label class="label--checkbox">
+            <input type="checkbox" class="checkbox" id="remember_me" name="_remember_me" value="on">
+            {{ 'security.login.remember_me'|trans }}
+        </label>
     </div>
     <button type="submit" class="button buttonBlue">{{ 'security.login.submit'|trans }}
         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
-    <a href="{{ path('fos_user_registration_register') }}" class="button buttonBlue">{{ 'layout.register'|trans }}
-        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-    </a>
 </form>
+<a href="{{ path('fos_user_registration_register') }}" class="button buttonBlue">{{ 'layout.register'|trans }}
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+</a>
 {% endblock fos_user_content %}
