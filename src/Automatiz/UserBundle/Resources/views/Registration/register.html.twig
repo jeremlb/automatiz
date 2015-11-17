@@ -1,0 +1,45 @@
+{% extends "AutomatizUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <h3>Register</h3>
+    <form  action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+        {#        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />#}
+        {#{{ form_widget(form) }}#}
+        <div class="inline">
+            <div class="group">
+                <input type="text" id="fos_user_registration_form_firstName" name="fos_user_registration_form[firstName]" required/><span class="highlight"></span><span class="bar"></span>
+                <label class="label--other ">{{ 'form.firstname'|trans }}</label>
+            </div>
+
+            <div class="group group-right">
+                <input type="text" id="fos_user_registration_form_lastName" name="fos_user_registration_form[lastName]" /><span class="highlight"></span><span class="bar"></span>
+                <label class="label--other ">{{ 'form.lastname'|trans }}</label>
+            </div>
+        </div>
+        <div class="group">
+            <input type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" /><span class="highlight"></span><span class="bar"></span>
+            <label class="label--other ">{{ 'form.username'|trans }}</label>
+        </div>
+
+        <div class="group">
+            <input type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required"><span class="highlight"></span><span class="bar"></span>
+            <label class="label--other ">{{ 'form.email'|trans }}</label>
+        </div>
+
+        <div class="group">
+            <input type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" /><span class="highlight"></span><span class="bar"></span>
+            <label class="label--other ">{{ 'form.password'|trans }}</label>
+        </div>
+
+        <div class="group">
+            <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" /><span class="highlight"></span><span class="bar"></span>
+            <label class="label--other ">{{ 'form.password_confirmation'|trans }}</label>
+        </div>
+
+        <button type="submit" class="button buttonBlue">{{ 'registration.submit'|trans }}
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        </button>
+    </form>
+{% endblock fos_user_content %}

@@ -106,7 +106,7 @@ class User extends BaseUser
      */
     public function setLastname($lastName)
     {
-        $this->firstname = $firstName;
+        $this->lastname = $lastName;
         return $this;
     }
 }
