@@ -1,0 +1,42 @@
+<header class="header" ng-controller="HeaderCtrl">
+
+
+    <h1 class="main-logo">
+        <a href="/" class="main-logo__link" lx-ripple="white">
+            <!--<img src="/images/logo/lumx-white.png">-->
+
+        </a>
+
+    </h1>
+    <nav class="main-nav-left" ng-class="">
+        <button class="btn btn--s btn--white btn--icon" lx-ripple>
+            <ng-md-icon icon="{{icon}}"  ng-attr-style="fill: {{'white'}}" size="30" options='{"duration": 375, "rotation": "none"}' ng-click="clickIconMorph()"></ng-md-icon>
+        </button>
+    </nav>
+    <nav class="main-nav main-nav--palm">
+        <button class="btn btn--s btn--white btn--flat" lx-ripple>
+            <i class="icon icon--s icon--white icon--flat mdi mdi-email"></i>
+            <span class="notifications-label notifications-label-10">1</span>
+        </button>
+        <button class="btn btn--s btn--white btn--flat" lx-ripple>
+            <i class="icon icon--s icon--white icon--flat mdi mdi-bell"></i>
+            <span class="notifications-label notifications-label-15">0</span>
+        </button>
+        <button class="btn btn--s btn--white btn--flat" lx-ripple>
+            <i class="icon icon--s icon--white icon--flat mdi mdi-settings"></i>
+        </button>
+    </nav>
+    <nav class="main-nav main-nav--palm">
+        <lx-dropdown>
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dropdown-toggle>
+                <i class="icon icon--s icon--grey icon--flat mdi mdi-account"></i>
+                Jérémi
+            </button>
+            <lx-dropdown-menu>
+                <ul>
+                    <li><a href="/getting-started/installation" class="dropdown-link">Log out</a></li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
+    </nav>
+</header>

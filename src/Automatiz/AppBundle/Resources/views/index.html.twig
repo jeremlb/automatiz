@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script data-main="{{ asset('bundles/automatizapp/main') }}" src="{{ asset('bundles/automatizapp/bower_components/requirejs/require.js') }}"></script>
+    <style>
+        ng-md-icon {
+            position: relative;
+        }
+
+        ng-md-icon svg {
+            position: relative;
+            top: -4px;
+            left: -4px;
+        }
+    </style>
+</head>
+<body>
+    <ng-include src="'{{ asset('bundles/automatizapp/app/common/header/header.html') }}'"></ng-include>
+    <div class="main">
+        <ng-include src="'{{ asset('bundles/automatizapp/app/common/sidebar/sidebar.html') }}'"></ng-include>
+        <div class="main-section">
+            <h3 class="main-section__title">Cards</h3>
+            <ng-view></ng-view>
+        </div>
+    </div>
+</body>
+</html>

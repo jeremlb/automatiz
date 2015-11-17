@@ -1,0 +1,45 @@
+<div class="main-section__content">
+    <div id="progress" class="progress"></div>
+    <div flex-container="row" flex-gutter="24" class="row-container" ng-show="cocktailsRows.length > 0">
+        <div flex-item>
+            <div class="card">
+                <div class="toolbar">
+                    <lx-search-filter model="searchFilter" filter-width="100%" placeholder="Search"></lx-search-filter>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div flex-container="row" flex-gutter="24" class="row-container" ng-repeat="cocktailRow in cocktailsRows">
+
+        <div flex-item="3" ng-repeat="cocktail in cocktailRow">
+            <div class="card">
+                <div class="card__img card__img--top" ng-if="cocktail.picture == true">
+                    <img src="{{cocktail.picture}}">
+                </div>
+
+                <div class="p+">
+                    <span class="fs-subhead tc-black-2 display-block">{{cocktail.name}}</span>
+                    <div class="paragraph fs-body-1">
+                        <p>{{cocktail.description}}</p>
+                    </div>
+                </div>
+
+                <div class="card__actions">
+                    <a href="#/"><button class="btn btn--m btn--black btn--flat" lx-ripple>Share</button></a>
+                    <a href="{{'#/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Show</button></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fab cocktail-button">
+        <a href="#/cocktails/new">
+            <button class="fab__primary btn btn--xl btn--blue btn--fab" lx-ripple> <!-- lx-tooltip="Lorem Ipsum" tooltip-position="left"-->
+                <i class="mdi mdi-plus"></i>
+                <i class="mdi mdi-martini"></i>
+            </button>
+        </a>
+    </div>
+</div>

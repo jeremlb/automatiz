@@ -14,7 +14,7 @@ class DefaultController extends Controller
 
     public function appAction()
     {
-        return new Response("load the app");
+        return $this->render('AutomatizAppBundle::index.html.twig');
     }
 
     public function adminAction()

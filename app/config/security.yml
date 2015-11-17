@@ -47,7 +47,7 @@ security:
                 provider: fos_userbundle
                 check_path: /oauth/v2/auth_login_check
                 login_path: /oauth/v2/auth_login
-                default_target_path:    /
+                default_target_path:    /app
             anonymous: true
 
         dev:

@@ -1,0 +1,33 @@
+{
+  "name": "autimatiz-admin",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jérémi Le Bourhis <jeremi.leb@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.20",
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "lumx": "~0.3.95",
+    "requirejs-plugins": "~1.0.3",
+    "angular-route": "~1.4.7",
+    "require-css": "~0.1.8",
+    "Chart.js": "chartjs#~1.0.2",
+    "angular-chart.js": "~0.8.5",
+    "Materialize": "materialize#~0.97.1",
+    "angular-accordion": "ang-accordion#*",
+    "material-calendar": "~0.2.12",
+    "angular-ui-calendar": "~1.0.1"
+  }
+}
