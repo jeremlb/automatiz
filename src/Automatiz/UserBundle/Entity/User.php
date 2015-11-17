@@ -48,6 +48,18 @@ class User extends BaseUser
      */
     protected $cocktails;
 
+    /**
+     * @var String
+     * @ORM\Column(name="firstname", type="string", length=255)
+     */
+    protected $firstname;
+
+    /**
+     * @var String
+     * @ORM\Column(name="lastname", type="string", length=255)
+     */
+    protected $lastname;
+
     public function __construct()
     {
         parent::__construct();
@@ -60,5 +72,41 @@ class User extends BaseUser
     public function getCocktails()
     {
         return $this->cocktails;
+    }
+
+    /**
+     * @return String
+     */
+    public function getFirstName()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param $firstName
+     * @return $this
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstname = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return String
+     */
+    public function getLastName()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param $lastName
+     * @return $this
+     */
+    public function setLastname($lastName)
+    {
+        $this->firstname = $firstName;
+        return $this;
     }
 }

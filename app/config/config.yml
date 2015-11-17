@@ -114,6 +114,9 @@ fos_user:
     user_class: Automatiz\UserBundle\Entity\User
     group:
         group_class: Automatiz\UserBundle\Entity\Group
+    registration:
+        form:
+            type: user_registration
 
 fos_oauth_server:
     db_driver:           orm
