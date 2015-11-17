@@ -1,7 +1,7 @@
-define(["angular", "common/oauth", "common/constants"], function (angular) {
-   angular.module("users.services", ["common.oauth", "common.constants"])
-    .service("UsersService", ["$log", "$q", "Oauth2Request", "UserApi",
-       function ($log, $q, Oauth2Request, UserApi) {
+define(["angular", "common/constants"], function (angular) {
+   angular.module("users.services", ["common.constants"])
+    .service("UsersService", ["$log", "$q", "$http", "UserApi",
+       function ($log, $q, $http, UserApi) {
 
            var users = null;
 
@@ -9,7 +9,7 @@ define(["angular", "common/oauth", "common/constants"], function (angular) {
                var defered = $q.defer();
 
                if(users === null) {
-                   Oauth2Request({
+                   $http({
                        url : UserApi.url,
                        method: "GET",
                        headers: {

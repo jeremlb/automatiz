@@ -1,7 +1,7 @@
-define(["angular", "common/oauth", "common/constants"], function (angular) {
-    angular.module("cocktails.services", ["common.oauth", "common.constants"])
-        .service("CocktailsService", ["$log", "$q", "Oauth2Request", "CocktailApi",
-            function ($log, $q, Oauth2Request, CocktailApi) {
+define(["angular", "common/constants"], function (angular) {
+    angular.module("cocktails.services", ["common.constants"])
+        .service("CocktailsService", ["$log", "$q", "$http", "CocktailApi",
+            function ($log, $q, $http, CocktailApi) {
 
                 var cocktails = null;
 
@@ -9,7 +9,7 @@ define(["angular", "common/oauth", "common/constants"], function (angular) {
                     var defered = $q.defer();
 
                     if(cocktails === null) {
-                        Oauth2Request({
+                        $http({
                             url : CocktailApi.url,
                             method: "GET",
                             headers: {

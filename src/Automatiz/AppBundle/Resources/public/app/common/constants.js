@@ -1,5 +1,5 @@
 define(["angular"], function (angular) {
-    var baseurl = "http://api.automatiz.local:8000";
+    var baseurl = "http://automatiz.local:8000";
     var client_id = "1_3tkg46xszgysswsowkwo4oow0wgcsgkcg4gks0kk08kk0swk0s";
     var client_secret = "51iuu1y44vgo0cowgs84sogkc8g8okogw8ko4ow00s4kgkgks0";
     var scope = "users cocktails";
