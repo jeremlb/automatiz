@@ -59,10 +59,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/images, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-#        - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
         - { host: automatiz\.local, path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { host: api\.automatiz\.local, path: ^/api/cocktails, role: ROLE_COCKTAILS }
