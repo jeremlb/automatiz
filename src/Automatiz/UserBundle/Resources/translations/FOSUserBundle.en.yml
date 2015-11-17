@@ -1,3 +1,4 @@
 form:
     firstname: Firstname
     lastname: Lastname
+    reset: Forget your password ?

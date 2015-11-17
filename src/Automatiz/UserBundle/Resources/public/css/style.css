@@ -57,7 +57,7 @@ input:not([type="checkbox"]):focus { outline: none; }
     position: absolute;
     pointer-events: none;
     transition: all 0.2s ease;
-    top: -10px;
+    top: -13px;
     font-size: 12px;
     color: #4a89dc;
 }
@@ -311,4 +311,10 @@ footer img:focus , footer a:focus { outline: none; }
 
 .group-right {
     float: right;
+}
+
+.link-form {
+    font-size: 12px;
+    color: #4a89dc;
+    text-decoration: none;
 }
