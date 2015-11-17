@@ -11,3 +11,6 @@
 /web/bundles/
 /web/uploads/
 .idea/*
+*/**/nodes_modules/
+node_modules/
+*/**/.idea/

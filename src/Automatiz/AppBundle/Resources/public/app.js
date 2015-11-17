@@ -17,10 +17,10 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
         ]);
 
     app.config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider) {
-        //$locationProvider.html5Mode({
-        //    enabled: true,
-        //    requireBase: false
-        //});
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
         $routeProvider.
             when('/', {

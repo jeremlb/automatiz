@@ -28,7 +28,6 @@ class SecurityController extends Controller
         }
 
         return $this->redirectToRoute('automatiz_app');
-
     }
 
     public function login(Request $request)
