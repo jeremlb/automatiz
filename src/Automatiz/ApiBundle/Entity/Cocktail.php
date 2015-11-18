@@ -5,7 +5,7 @@ namespace Automatiz\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
-use Automatiz\ApiBundle\Entity\User;
+use Automatiz\UserBundle\Entity\User;
 
 /**
  * Cocktail
@@ -86,6 +86,11 @@ class Cocktail
      *
      */
     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Automatiz\ApiBundle\Entity\CocktailImage", cascade={"persist", "remove"})
+     */
+    private $image;
 
     public function __construct(User $user)
     {
@@ -284,6 +289,17 @@ class Cocktail
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($cocktailImage)
+    {
+        $this->image = $cocktailImage;
+        return $this;
     }
 
     /**

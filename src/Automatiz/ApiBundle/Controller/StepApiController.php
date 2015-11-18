@@ -27,10 +27,10 @@ class StepApiController extends Controller
      * @return array
      * @Rest\View(serializerGroups={"steps"})
      */
-    public function allAction($cocktailId)
+    public function allAction($id)
     {
         $em = $this->get('doctrine')->getManager();
-        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($cocktailId);
+        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
 
         return array(
             "steps" => $cocktail->getSteps(),
@@ -47,10 +47,10 @@ class StepApiController extends Controller
      * @return array
      * @Rest\View(serializerGroups={"details", "steps"})
      */
-    public function postAction(Request $request, $cocktailId)
+    public function postAction(Request $request, $id)
     {
         $em = $this->get('doctrine')->getManager();
-        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($cocktailId);
+        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
 
 
         return array(

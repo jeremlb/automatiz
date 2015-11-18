@@ -1,5 +1,14 @@
 
-cocktail_post:
-    path:  cocktails/image
+cocktail_image_post:
+    path:  cocktails/{id}/image
     defaults: { _controller: AutomatizApiBundle:CocktailImageApi:new, _format: json}
-    methods: [POST, GET]
+    methods: [POST]
+    requirements:
+        id: "[a-z0-9]{13}"
+#
+#cocktail_image_get:
+#    path:  cocktails/{id}/image
+#    defaults: { _controller: AutomatizApiBundle:CocktailImageApi:get, _format: json}
+#    methods: [GET]
+#    requirements:
+#        id: "[a-z0-9]{13}"

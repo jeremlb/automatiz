@@ -25,9 +25,10 @@ class CocktailImageApiController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
-        return $this->processForm($request, new CocktailImage());
+        $cocktail = $this->getCocktail($id);
+        return $this->processForm($request, new CocktailImage(), $cocktail);
     }
 
     /**
@@ -35,7 +36,7 @@ class CocktailImageApiController extends Controller
      * @param CocktailImage $cocktailImage
      * @return View|Response
      */
-    private function processForm(Request $request, CocktailImage $cocktailImage)
+    private function processForm(Request $request, CocktailImage $cocktailImage, $cocktail)
     {
         $logger = $this->get("logger");
 
@@ -57,6 +58,8 @@ class CocktailImageApiController extends Controller
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($cocktailImage);
+
+            $cocktail->setImage($cocktailImage);
             $em->flush();
 
             $response = new Response();
@@ -68,5 +71,17 @@ class CocktailImageApiController extends Controller
 /*        return $this->render('AutomatizApiBundle:Default:upload.html.twig', array(
             'form' => $form->createView(),
         ));*/
+    }
+
+    private function getCocktail($id)
+    {
+        $em = $this->get('doctrine')->getManager();
+        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
+
+        if (!$cocktail instanceof Cocktail) {
+            throw new NotFoundHttpException('Cocktail not found');
+        }
+
+        return $cocktail;
     }
 }
