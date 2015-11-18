@@ -1,0 +1,6 @@
+Automatiz\ApiBundle\Entity\CocktailImage:
+    exclusion_policy: ALL
+    properties:
+        file:
+            expose: true
+            groups: [default, details]

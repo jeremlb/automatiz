@@ -302,6 +302,16 @@ class Cocktail
         return $this;
     }
 
+    public function getImageUrl()
+    {
+        if($this->image) {
+            return $this->image->getUrl();
+        }
+
+        return null;
+
+    }
+
     /**
      * Set the Datetime of the insertion into the Database
      * @ORM\PreUpdate()

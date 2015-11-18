@@ -29,6 +29,12 @@ Automatiz\ApiBundle\Entity\Cocktail:
         user:
             expose: true
             groups: [details]
+
+    virtual_properties:
+        getImageUrl:
+            groups: [default, details]
+            type: string
+            serialized_name: image
     relations:
         -
             rel: self

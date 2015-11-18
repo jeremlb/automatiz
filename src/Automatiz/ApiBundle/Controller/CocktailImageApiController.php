@@ -7,7 +7,7 @@
  */
 
 namespace Automatiz\ApiBundle\Controller;
-
+use Automatiz\ApiBundle\Entity\Cocktail;
 use Automatiz\ApiBundle\Entity\CocktailImage;
 use Automatiz\ApiBundle\Form\CocktailImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,6 +27,7 @@ class CocktailImageApiController extends Controller
      */
     public function newAction(Request $request, $id)
     {
+        $this->get("logger")->info($id);
         $cocktail = $this->getCocktail($id);
         return $this->processForm($request, new CocktailImage(), $cocktail);
     }
@@ -40,7 +41,7 @@ class CocktailImageApiController extends Controller
     {
         $logger = $this->get("logger");
 
-        //print_r($request->files->all());//Prints All files
+//        print_r($request->files->all());//Prints All files
 
         $form = $this->createForm(new CocktailImageType(), $cocktailImage);
         $form->handleRequest($request);
@@ -54,6 +55,7 @@ class CocktailImageApiController extends Controller
 
             $cocktailImage->setFile($fileName);
             $cocktailImage->setPath($imageDir);
+            $cocktailImage->setUrl("/web/uploads/cocktails_pictures/".$fileName);
 
 
             $em = $this->getDoctrine()->getEntityManager();

@@ -27,6 +27,11 @@ class CocktailImage
     protected $id;
 
     /**
+     * @ORM\Column(name="url", type="string")
+     */
+    protected $url;
+
+    /**
      * @ORM\Column(name="file", type="string")
      */
     protected $file;
@@ -62,6 +67,17 @@ class CocktailImage
     public function setPath($path)
     {
         $this->path = $path;
+        return $this;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
         return $this;
     }
 }
