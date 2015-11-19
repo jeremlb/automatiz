@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jeremi
- * Date: 06/10/15
- * Time: 14:07
- */
-
 namespace Automatiz\ApiBundle\Controller;
 
 use Automatiz\ApiBundle\Entity\Cocktail;
-use Automatiz\ApiBundle\Entity\Step;
 use Automatiz\ApiBundle\Form\CocktailType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,17 +10,18 @@ use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CocktailApiController extends Controller
 {
     /**
      * @Rest\View(serializerGroups={"default", "defaultuser"})
+     * @param Request $request
+     * @return array|Response
+     * @internal param $
      */
-    public function allAction(Request $request) {
+    public function allAction(Request $request)
+    {
         $em = $this->getDoctrine()->getEntityManager();
-
-        $logger = $this->get("logger");
 
         if($request->query->get('name') !== null) {
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
@@ -41,13 +34,13 @@ class CocktailApiController extends Controller
 
     /**
      * @Rest\View(serializerGroups={"details", "steps"})
+     * @param Request $request
+     * @param string $id
+     * @return array
      */
-    public function getAction(Request $request, $id) {
-
-        $cocktail = $this->getCocktail($id);
-
-        $this->get("logger")->info($cocktail->getUser());
-
+    public function getAction(Request $request, $id)
+    {
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
         return array('cocktail' => $cocktail);
     }
 
@@ -62,23 +55,68 @@ class CocktailApiController extends Controller
         return $this->processForm($request, new Cocktail($this->getUser()));
     }
 
+    /**
+     * @Rest\View(statusCode=204)
+     * @param Request $request
+     * @param string $id
+     * @return Response
+     * @internal param $
+     */
     public function editAction(Request $request, $id)
     {
-        $cocktail = $this->getCocktail($id);
-
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
         return $this->processForm($request, $cocktail);
     }
 
     /**
      * @Rest\View(statusCode=204)
+     * @param Request $request
+     * @param string $id
+     * @internal param $
      */
     public function removeAction(Request $request, $id)
     {
-        $cocktail = $this->getCocktail($id);
-
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
         $em = $this->get('doctrine')->getManager();
         $em->remove($cocktail);
         $em->flush();
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"details"})
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function newNoteAction(Request $request, $id)
+    {
+        $content = $request->getContent();
+
+        if (!empty($content))
+        {
+            $params = json_decode($content, true); // 2nd param to get as array
+            $noteParam = $params["note"];
+
+            $user = $this->getUser();
+            $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
+
+            $note = $cocktail->getNote();
+
+            if($note == 0) {
+                $cocktail->setNote($noteParam);
+            } else {
+                $moy = ($note + $noteParam) / 2;
+                $cocktail->setNote($moy);
+            }
+
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($cocktail);
+            $em->flush();
+        }
+
+        $response = new Response();
+        $response->setStatusCode(201);
+        return $response;
     }
 
     /**
@@ -110,17 +148,5 @@ class CocktailApiController extends Controller
         }
 
         return View::create($form, 400);
-    }
-
-    private function getCocktail($id)
-    {
-        $em = $this->get('doctrine')->getManager();
-        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
-
-        if (!$cocktail instanceof Cocktail) {
-            throw new NotFoundHttpException('Cocktail not found');
-        }
-
-        return $cocktail;
     }
 }

@@ -7,7 +7,6 @@
  */
 
 namespace Automatiz\ApiBundle\Controller;
-use Automatiz\ApiBundle\Entity\Cocktail;
 use Automatiz\ApiBundle\Entity\CocktailImage;
 use Automatiz\ApiBundle\Form\CocktailImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,7 +15,6 @@ use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CocktailImageApiController extends Controller
 {
@@ -27,8 +25,7 @@ class CocktailImageApiController extends Controller
      */
     public function newAction(Request $request, $id)
     {
-        $this->get("logger")->info($id);
-        $cocktail = $this->getCocktail($id);
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
         return $this->processForm($request, new CocktailImage(), $cocktail);
     }
 
@@ -39,10 +36,6 @@ class CocktailImageApiController extends Controller
      */
     private function processForm(Request $request, CocktailImage $cocktailImage, $cocktail)
     {
-        $logger = $this->get("logger");
-
-//        print_r($request->files->all());//Prints All files
-
         $form = $this->createForm(new CocktailImageType(), $cocktailImage);
         $form->handleRequest($request);
 
@@ -70,20 +63,5 @@ class CocktailImageApiController extends Controller
         }
 
         return View::create($form, 400);
-/*        return $this->render('AutomatizApiBundle:Default:upload.html.twig', array(
-            'form' => $form->createView(),
-        ));*/
-    }
-
-    private function getCocktail($id)
-    {
-        $em = $this->get('doctrine')->getManager();
-        $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
-
-        if (!$cocktail instanceof Cocktail) {
-            throw new NotFoundHttpException('Cocktail not found');
-        }
-
-        return $cocktail;
     }
 }

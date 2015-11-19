@@ -42,6 +42,7 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
             }
         }])
 
+
         .controller("CocktailsGetCtrl", ["$scope", "CocktailsService", "LxProgressService", function ($scope, CocktailsService, LxProgressService) {
             console.log("coucou get");
         }]);

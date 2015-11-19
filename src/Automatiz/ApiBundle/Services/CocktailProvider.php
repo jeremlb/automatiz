@@ -15,18 +15,31 @@ use Symfony\Component\Routing\Router;
 use Automatiz\ApiBundle\Model\AbstractCocktail;
 use Automatiz\ApiBundle\Entity\Step;
 
+use Automatiz\ApiBundle\Entity\Cocktail;
+use Automatiz\UserBundle\Entity\User;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+
 class CocktailProvider
 {
     private $entityManager;
-    private $router;
 
-    public function __construct(EntityManager $entityManager, Router $router) {
+    public function __construct(EntityManager $entityManager) {
         $this->entityManager = $entityManager;
-        $this->router = $router;
     }
 
-    public function addCocktail() {
-        $cocktail = new Cocktail();
+    public function addCocktail(User $user) {
+        $cocktail = new Cocktail($user);
+        return $cocktail;
+    }
+
+    public function getCocktail($id)
+    {
+        $cocktail = $this->entityManager->getRepository('AutomatizApiBundle:Cocktail')->find($id);
+
+        if (!$cocktail instanceof Cocktail) {
+            throw new NotFoundHttpException('Cocktail not found');
+        }
 
         return $cocktail;
     }

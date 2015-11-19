@@ -49,6 +49,13 @@ class User extends BaseUser
     protected $cocktails;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Automatiz\ApiBundle\Entity\Stat", mappedBy="user", cascade={"remove"})
+     *
+     */
+    protected $stats;
+
+    /**
      * @var String
      * @ORM\Column(name="firstname", type="string", length=255)
      */
@@ -63,6 +70,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->stats = new ArrayCollection();
         $this->cocktails = new ArrayCollection();
     }
 
@@ -72,6 +80,11 @@ class User extends BaseUser
     public function getCocktails()
     {
         return $this->cocktails;
+    }
+
+    public function getStats()
+    {
+        return $this->stats;
     }
 
     /**

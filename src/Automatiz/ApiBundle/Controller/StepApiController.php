@@ -52,7 +52,6 @@ class StepApiController extends Controller
         $em = $this->get('doctrine')->getManager();
         $cocktail = $em->getRepository('AutomatizApiBundle:Cocktail')->find($id);
 
-
         return array(
             "steps" => "coucou"
         );

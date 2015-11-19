@@ -28,4 +28,11 @@ class MeApiController extends Controller
 
         return array("me" => $me);
     }
+
+    public function getStatsAction(Request $request)
+    {
+        $me = $this->getUser();
+
+        return array("stats" => $me->getStats());
+    }
 }

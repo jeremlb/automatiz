@@ -12,3 +12,6 @@ step_api:
 
 cocktail_image_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/cocktailimage.yml"
+
+stat_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/stat.yml"

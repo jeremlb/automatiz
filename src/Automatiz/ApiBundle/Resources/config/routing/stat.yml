@@ -1,0 +1,4 @@
+stat_post:
+    path:  stats
+    defaults: { _controller: AutomatizApiBundle:StatApi:new, _format: json}
+    methods: [POST]

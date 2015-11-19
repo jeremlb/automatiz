@@ -28,3 +28,10 @@ cocktail_delete:
     methods: [DELETE]
     requirements:
         id: "[a-z0-9]{13}"
+
+cocktail_note_post:
+    path:  cocktails/{id}/note
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:newNote, _format: json}
+    methods: [POST]
+    requirements:
+        id: "[a-z0-9]{13}"

@@ -8,51 +8,41 @@ use JMS\Serializer\Annotation as Serializer;
 use Automatiz\UserBundle\Entity\User;
 
 /**
- * Cocktail
  * @ORM\Entity(repositoryClass="Automatiz\ApiBundle\Entity\CocktailRepository")
  * @ORM\Table("cocktail")
  * @ORM\HasLifecycleCallbacks()
- *
- *
  */
 class Cocktail
 {
     /**
      * @var string
-     *
      * @ORM\Column(name="id", type="string", length=13)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator")
-     *
      */
-
     private $id;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="has_alcoohol", type="boolean", nullable=true)
      */
     private $has_alcoohol;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
@@ -60,14 +50,12 @@ class Cocktail
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="note", type="smallint")
      */
     private $note;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -80,10 +68,8 @@ class Cocktail
     private $steps;
 
     /**
-     *
      * @ORM\ManyToOne(targetEntity="Automatiz\UserBundle\Entity\User", inversedBy="cocktails")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
      */
     private $user;
 
@@ -92,9 +78,16 @@ class Cocktail
      */
     private $image;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Automatiz\ApiBundle\Entity\Stat", mappedBy="cocktail")
+     */
+    private $stats;
+
     public function __construct(User $user)
     {
         $this->steps = new ArrayCollection();
+        $this->stats = new ArrayCollection();
         $this->user = $user;
     }
 
@@ -104,8 +97,6 @@ class Cocktail
     }
 
     /**
-     * Get id
-     *
      * @return string
      */
     public function getId()
@@ -114,22 +105,16 @@ class Cocktail
     }
 
     /**
-     * Set name
-     *
      * @param string $name
-     *
-     * @return Cocktail
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
     /**
-     * Get name
-     *
      * @return string
      */
     public function getName()
@@ -138,22 +123,16 @@ class Cocktail
     }
 
     /**
-     * Set alcoohol
-     *
      * @param string $alcoohol
-     *
      * @return Cocktail
      */
     public function setHasAlcoohol($alcoohol)
     {
         $this->has_alcoohol = $alcoohol;
-
         return $this;
     }
 
     /**
-     * Get alcoohol
-     *
      * @return string
      */
     public function getHasAlcoohol()
@@ -162,22 +141,16 @@ class Cocktail
     }
 
     /**
-     * Set createdAt
-     *
      * @param \DateTime $createdAt
-     *
      * @return Cocktail
      */
     protected function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
     /**
-     * Get createdAt
-     *
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -186,22 +159,16 @@ class Cocktail
     }
 
     /**
-     * Set updatedAt
-     *
      * @param \DateTime $updatedAt
-     *
      * @return Cocktail
      */
     protected function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
     /**
-     * Get updatedAt
-     *
      * @return \DateTime
      */
     public function getUpdatedAt()
@@ -210,22 +177,16 @@ class Cocktail
     }
 
     /**
-     * Set note
-     *
      * @param integer $note
-     *
      * @return Cocktail
      */
     public function setNote($note)
     {
         $this->note = $note;
-
         return $this;
     }
 
     /**
-     * Get note
-     *
      * @return integer
      */
     public function getNote()
@@ -234,22 +195,16 @@ class Cocktail
     }
 
     /**
-     * Set description
-     *
      * @param string $description
-     *
      * @return Cocktail
      */
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
     public function getDescription()
@@ -264,58 +219,96 @@ class Cocktail
     public function addStep(Step $step)
     {
         $this->steps->add($step);
-
         $step->setCocktail($this);
-
         return $this;
     }
 
     /**
      * @param Step $step
+     * @return $this
      */
     public function removeStep(Step $step)
     {
         $this->steps->removeElement($step);
+        return $this;
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection<Step>
      */
     public function getSteps()
     {
         return $this->steps;
     }
 
+    /**
+     * @param Stat $stat
+     * @return $this
+     */
+    public function addStat(Stat $stat)
+    {
+        $this->stats->add($stat);
+        $stat->setCocktail($this);
+        return $this;
+    }
+
+    /**
+     * @param Stat $stat
+     * @return $this
+     */
+    public function removeStat(Stat $stat)
+    {
+        $this->stats->removeElement($stat);
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Stat>
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * @return User
+     */
     public function getUser()
     {
         return $this->user;
     }
 
+    /**
+     * @return CocktailImage
+     */
     public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage($cocktailImage)
+    /**
+     * @param CocktailImage $cocktailImage
+     * @return $this
+     */
+    public function setImage(CocktailImage $cocktailImage)
     {
         $this->image = $cocktailImage;
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getImageUrl()
     {
         if($this->image) {
             return $this->image->getUrl();
         }
-
         return null;
-
     }
 
     /**
-     * Set the Datetime of the insertion into the Database
      * @ORM\PreUpdate()
-     *
      */
     public function preUpdate()
     {
@@ -323,10 +316,7 @@ class Cocktail
     }
 
     /**
-
-     * Set the Datetime of the insertion into the Database
      * @ORM\PrePersist()
-     *
      */
     public function prePersist()
     {
@@ -335,6 +325,9 @@ class Cocktail
         $this->setNote(0);
     }
 
+    /**
+     * @return string
+     */
     public function __toString() {
         return $this->getName()." ".$this->getDescription();
     }

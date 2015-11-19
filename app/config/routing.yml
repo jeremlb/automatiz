@@ -30,7 +30,7 @@ fos_oauth_server_authorize:
 automatiz_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/all.yml"
     prefix: /api
-    
+
 automatiz_app:
     resource: "@AutomatizAppBundle/Resources/config/routing.yml"
     prefix:   /

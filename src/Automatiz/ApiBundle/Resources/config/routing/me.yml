@@ -2,3 +2,8 @@ me_get:
     path:  me
     defaults: { _controller: AutomatizApiBundle:MeApi:get, _format: json}
     methods: [GET]
+
+me_stats_get:
+    path:  me/stats
+    defaults: { _controller: AutomatizApiBundle:MeApi:getStats, _format: json}
+    methods: [GET]

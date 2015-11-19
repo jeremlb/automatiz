@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jeremi
- * Date: 02/11/2015
- * Time: 23:14
- */
-
 namespace Automatiz\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
