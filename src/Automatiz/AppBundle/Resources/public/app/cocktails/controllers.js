@@ -37,10 +37,7 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
                     setTimeout(function () {
                         LxProgressService.circular.hide();
                     }, 10);
-
-                    console.log("OK")
                 }, function () {
-                    console.log("coucou")
                 });
             }
         }])

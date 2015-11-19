@@ -17,14 +17,13 @@ define(["angular", "common/constants"], function (angular) {
                             }
 
                         }).then(function (response) {
-                            $log.debug(response);
                             cocktails = response.data.cocktails;
                             defered.resolve(cocktails);
                         }, function () {
                             defered.error();
                         });
                     } else {
-                        defered.resolve(cocktails)
+                        defered.resolve(cocktails);
                     }
                     return defered.promise;
                 }

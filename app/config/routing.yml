@@ -27,10 +27,10 @@ fos_oauth_server_token:
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
-automatiz_app:
-    resource: "@AutomatizAppBundle/Resources/config/routing.yml"
-    prefix:   /
-
 automatiz_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/all.yml"
     prefix: /api
+    
+automatiz_app:
+    resource: "@AutomatizAppBundle/Resources/config/routing.yml"
+    prefix:   /

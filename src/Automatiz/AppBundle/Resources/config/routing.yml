@@ -2,6 +2,10 @@ automatiz_app:
     path:     /
     defaults: { _controller: AutomatizAppBundle:Default:index }
 
+automatiz_app_slug_2:
+    path:     /{slug}/{id}
+    defaults: { _controller: AutomatizAppBundle:Default:index }
+
 automatiz_app_slug:
     path:     /{slug}
     defaults: { _controller: AutomatizAppBundle:Default:index }
