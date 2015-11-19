@@ -2,6 +2,7 @@
 namespace Automatiz\ApiBundle\Controller;
 
 use Automatiz\ApiBundle\Entity\Cocktail;
+use Automatiz\ApiBundle\Entity\Note;
 use Automatiz\ApiBundle\Form\CocktailType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -100,14 +101,8 @@ class CocktailApiController extends Controller
             $user = $this->getUser();
             $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
 
-            $note = $cocktail->getNote();
-
-            if($note == 0) {
-                $cocktail->setNote($noteParam);
-            } else {
-                $moy = ($note + $noteParam) / 2;
-                $cocktail->setNote($moy);
-            }
+            $note = new Note($user, $cocktail, $noteParam);
+            $cocktail->addNote($note);
 
             $em = $this->get("doctrine")->getManager();
             $em->persist($cocktail);

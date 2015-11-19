@@ -47,13 +47,6 @@ class Cocktail
      */
     private $updatedAt;
 
-
-    /**
-     * @var integer
-     * @ORM\Column(name="note", type="smallint")
-     */
-    private $note;
-
     /**
      * @var string
      * @ORM\Column(name="description", type="text")
@@ -84,10 +77,17 @@ class Cocktail
      */
     private $stats;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Automatiz\ApiBundle\Entity\Note", mappedBy="cocktail", cascade={"persist", "remove"})
+     */
+    private $notes;
+
     public function __construct(User $user)
     {
         $this->steps = new ArrayCollection();
         $this->stats = new ArrayCollection();
+        $this->notes = new ArrayCollection();
         $this->user = $user;
     }
 
@@ -177,24 +177,6 @@ class Cocktail
     }
 
     /**
-     * @param integer $note
-     * @return Cocktail
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getNote()
-    {
-        return $this->note;
-    }
-
-    /**
      * @param string $description
      * @return Cocktail
      */
@@ -271,6 +253,35 @@ class Cocktail
     }
 
     /**
+     * @param Note $note
+     * @return $this
+     */
+    public function addNote(Note $note)
+    {
+        $this->notes->add($note);
+        $note->setCocktail($this);
+        return $this;
+    }
+
+    /**
+     * @param Note $note
+     * @return $this
+     */
+    public function removeNote(Note $note)
+    {
+        $this->notes->removeElement($note);
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Note>
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
      * @return User
      */
     public function getUser()
@@ -322,13 +333,12 @@ class Cocktail
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
-        $this->setNote(0);
     }
 
     /**
      * @return string
      */
     public function __toString() {
-        return $this->getName()." ".$this->getDescription();
+        return $this->getName();
     }
 }

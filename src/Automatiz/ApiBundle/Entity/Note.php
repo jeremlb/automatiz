@@ -6,13 +6,11 @@ use Automatiz\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Step
- *
- * @ORM\Table("stat")
+ * @ORM\Table("cocktail_note")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
-class Stat
+class Note
 {
     /**
      * @var string
@@ -25,23 +23,42 @@ class Stat
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="Automatiz\UserBundle\Entity\User", inversedBy="stats")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Automatiz\UserBundle\Entity\User", cascade={"persist"})
      */
     protected $user;
 
     /**
      * @var Cocktail
-     * @ORM\ManyToOne(targetEntity="Cocktail", inversedBy="stats")
+     * @ORM\ManyToOne(targetEntity="Cocktail", inversedBy="notes")
      * @ORM\JoinColumn(name="cocktail_id", referencedColumnName="id")
      */
     protected $cocktail;
 
     /**
-     * @var \DateTime
+     * @var int
+     * @ORM\Column(name="note", type="smallint")
+     */
+    protected $note;
+
+    /**
+     * @var \Datetime
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
+
+    /**
+     * @var string
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    protected $comment;
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param $id
@@ -54,11 +71,11 @@ class Stat
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getId()
+    public function getUser()
     {
-        return $this->id;
+        return $this->user;
     }
 
     /**
@@ -72,11 +89,11 @@ class Stat
     }
 
     /**
-     * @return User
+     * @return Cocktail
      */
-    public function getUser()
+    public function getCocktail()
     {
-        return $this->user;
+        return $this->cocktail;
     }
 
     /**
@@ -90,25 +107,25 @@ class Stat
     }
 
     /**
-     * @return Cocktail
+     * @return int
      */
-    public function getCocktail()
+    public function getNote()
     {
-        return $this->cocktail;
+        return $this->note;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param $note
      * @return $this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setNote($note)
     {
-        $this->createdAt = $createdAt;
+        $this->note = $note;
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return \Datetime
      */
     public function getCreatedAt()
     {
@@ -116,19 +133,48 @@ class Stat
     }
 
     /**
-     * @param User $user
-     * @param Cocktail $cocktail
+     * @param \Datetime $createdAt
+     * @return $this
      */
-    public function __construct(User $user, Cocktail $cocktail)
+    public function setCreatedAt(\Datetime $createdAt)
     {
-        $this->setCocktail($cocktail);
-        $this->setUser($user);
+        $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**
-    * Set the Datetime of the insertion into the Database
-    * @ORM\PrePersist()
-    */
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param $comment
+     * @return $this
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @param User $user
+     * @param Cocktail $cocktail
+     * @param $note
+     */
+    public function __construct(User $user, Cocktail $cocktail, $note)
+    {
+        $this->setUser($user);
+        $this->setCocktail($cocktail);
+        $this->setNote($note);
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
     public function prePersist()
     {
         $this->setCreatedAt(new \DateTime());
