@@ -78,6 +78,8 @@ class Cocktail
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
+
+        $this->hasAlcohol = false;
     }
 
     /**

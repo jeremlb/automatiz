@@ -17,6 +17,12 @@ class Liquid
      */
     protected $isAlcohol;
 
+    public function __construct($name, $isAlcohol = false)
+    {
+        $this->name = $name;
+        $this->isAlcohol = $isAlcohol;
+    }
+
     /**
      * @param $id
      * @return $this

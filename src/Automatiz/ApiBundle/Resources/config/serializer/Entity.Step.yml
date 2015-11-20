@@ -12,15 +12,17 @@ Automatiz\ApiBundle\Entity\Step:
             accessor:
                 getter: getQuantitySerialize
             groups: [steps]
-        liquid:
-            expose: true
-            type: string
-            accessor:
-                getter: getLiquidSerialize
-            groups: [steps]
+#        liquid:
+#            expose: true
+#            groups: [steps]
         addIce:
             expose: true
             serialized_name: addIce
             accessor:
                 getter: getAddIceSerialize
             groups: [steps]
+    virtual_properties:
+        getLiquidSerialize:
+            groups: [steps]
+            type: string
+            serialized_name: liquid

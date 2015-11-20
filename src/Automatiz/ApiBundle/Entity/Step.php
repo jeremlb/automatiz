@@ -32,6 +32,7 @@ class Step
     public function __construct()
     {
         $this->addIce = false;
+        $this->liquid = null;
     }
 
     /**
@@ -119,17 +120,17 @@ class Step
     /**
      * Get liquid
      *
-     * @return string
+     * @return Liquid
      */
     public function getLiquid()
     {
-        return ($this->liquid)? $this->liquid: "";
+        return $this->liquid;
     }
 
     /**
      * Set quantity
      *
-     * @param string $liquid
+     * @param Liquid $liquid
      *
      * @return Step
      */
@@ -183,7 +184,7 @@ class Step
         if($this->getAddIce() != false) {
             return null;
         } else {
-            return $this->getLiquid();
+            return $this->getLiquid()->getName();
         }
     }
 

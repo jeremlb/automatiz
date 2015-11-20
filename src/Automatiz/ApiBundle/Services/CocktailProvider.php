@@ -35,6 +35,7 @@ class CocktailProvider
 
     public function getCocktail($id)
     {
+
         $cocktail = $this->entityManager->getRepository('AutomatizApiBundle:Cocktail')->find($id);
 
         if (!$cocktail instanceof Cocktail) {

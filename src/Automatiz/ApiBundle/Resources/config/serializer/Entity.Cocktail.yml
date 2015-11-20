@@ -7,7 +7,7 @@ Automatiz\ApiBundle\Entity\Cocktail:
         name:
             expose: true
             groups: [default, details]
-        has_alcoohol:
+        hasAlcoohol:
             expose: true
             serialized_name: hasAlcohol
             groups: [default, details]

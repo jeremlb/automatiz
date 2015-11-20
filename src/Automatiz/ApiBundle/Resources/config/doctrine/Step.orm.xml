@@ -17,9 +17,12 @@
             <join-column name="cocktail_id" referenced-column-name="id" />
         </many-to-one>
 
+        <many-to-one field="liquid" target-entity="Liquid">
+            <join-column name="liquid_id" referenced-column-name="id" />
+        </many-to-one>
+
         <field name="description" column="description" type="text" />
-        <field name="quantity" column="quantity" type="smallint" nullable="true"/>
-        <field name="liquid" column="liquid" type="string" length="50" nullable="true" />
+        <field name="quantity" column="quantity" type="float" nullable="true"/>
         <field name="addIce" column="add_ice" type="boolean" />
     </entity>
 </doctrine-mapping>

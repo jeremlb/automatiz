@@ -1,0 +1,6 @@
+Automatiz\ApiBundle\Entity\Liquid:
+    exclusion_policy: ALL
+    properties:
+        name:
+            expose: true
+            groups: [steps]

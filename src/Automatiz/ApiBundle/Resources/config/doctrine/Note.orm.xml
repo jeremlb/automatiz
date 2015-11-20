@@ -20,7 +20,7 @@
             </cascade>
         </one-to-one>
 
-        <many-to-one field="cocktail" target-entity="Cocktail">
+        <many-to-one field="cocktail" target-entity="Cocktail" inversed-by="notes">
             <join-column name="cocktail_id" referenced-column-name="id" />
         </many-to-one>
 

@@ -6,8 +6,9 @@
 
 
     <entity name="Automatiz\ApiBundle\Entity\Liquid" table="cocktail_liquid">
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
+        <id name="id" type="string" length="13" column="id">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator"/>
         </id>
 
         <field name="name" column="name" type="string" length="255" />
