@@ -31,7 +31,7 @@
             </cascade>
         </one-to-many>
 
-        <one-to-one field="image" target-entity="CocktailImage">
+        <one-to-one field="image" target-entity="Image">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>

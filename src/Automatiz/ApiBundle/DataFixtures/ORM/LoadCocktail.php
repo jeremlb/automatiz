@@ -32,7 +32,6 @@ class LoadCocktail implements  FixtureInterface
 
 
         $cocktail = new Cocktail();
-        $cocktail->setHasAlcoohol(true);
         $cocktail->setDescription("C'est un super cocktail");
         $cocktail->setName("Le Oulanbator");
 
@@ -50,7 +49,6 @@ class LoadCocktail implements  FixtureInterface
 
 
         $cocktail2 = new Cocktail();
-        $cocktail2->setHasAlcoohol(false);
         $cocktail2->setDescription("Lourds gros");
         $cocktail2->setName("Le Wapiti");
 

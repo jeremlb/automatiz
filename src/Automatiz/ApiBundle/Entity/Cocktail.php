@@ -44,7 +44,7 @@ class Cocktail
      */
     private $user;
     /**
-     * @var CocktailImage
+     * @var Image
      */
     private $image;
     /**
@@ -299,7 +299,7 @@ class Cocktail
     }
 
     /**
-     * @return CocktailImage
+     * @return Image
      */
     public function getImage()
     {
@@ -307,10 +307,10 @@ class Cocktail
     }
 
     /**
-     * @param CocktailImage $cocktailImage
+     * @param Image $cocktailImage
      * @return $this
      */
-    public function setImage(CocktailImage $cocktailImage)
+    public function setImage(Image $cocktailImage)
     {
         $this->image = $cocktailImage;
         return $this;

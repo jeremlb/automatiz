@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Automatiz\ApiBundle\Entity\CocktailImage"
+    <entity name="Automatiz\ApiBundle\Entity\Image"
             table="cocktail_image">
 
         <id name="id" type="integer" column="id">

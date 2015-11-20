@@ -2,7 +2,7 @@
 
 namespace Automatiz\ApiBundle\Entity;
 
-class CocktailImage
+class Image
 {
     /**
      * @var integer
