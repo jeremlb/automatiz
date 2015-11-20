@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+
+    <entity name="Automatiz\ApiBundle\Entity\Step"
+            table="step">
+
+        <id name="id" type="string" length="13" column="id">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator"/>
+        </id>
+
+        <many-to-one field="cocktail" target-entity="Cocktail" inversed-by="steps">
+            <join-column name="cocktail_id" referenced-column-name="id" />
+        </many-to-one>
+
+        <field name="description" column="description" type="text" />
+        <field name="quantity" column="quantity" type="smallint" nullable="true"/>
+        <field name="liquid" column="liquid" type="string" length="50" nullable="true" />
+        <field name="addIce" column="add_ice" type="boolean" />
+    </entity>
+</doctrine-mapping>

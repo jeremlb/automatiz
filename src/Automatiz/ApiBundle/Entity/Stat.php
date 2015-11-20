@@ -3,43 +3,23 @@
 namespace Automatiz\ApiBundle\Entity;
 
 use Automatiz\UserBundle\Entity\User;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Step
- *
- * @ORM\Table("stat")
- * @ORM\Entity()
- * @ORM\HasLifecycleCallbacks()
- */
 class Stat
 {
     /**
-     * @var string
-     * @ORM\Column(name="id", type="string", length=13)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator")
+     * @var integer
      */
     protected $id;
-
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="Automatiz\UserBundle\Entity\User", inversedBy="stats")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
-
     /**
      * @var Cocktail
-     * @ORM\ManyToOne(targetEntity="Cocktail", inversedBy="stats")
-     * @ORM\JoinColumn(name="cocktail_id", referencedColumnName="id")
      */
     protected $cocktail;
-
     /**
      * @var \DateTime
-     * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
 
@@ -125,11 +105,7 @@ class Stat
         $this->setUser($user);
     }
 
-    /**
-    * Set the Datetime of the insertion into the Database
-    * @ORM\PrePersist()
-    */
-    public function prePersist()
+    public function onPrePersist()
     {
         $this->setCreatedAt(new \DateTime());
     }

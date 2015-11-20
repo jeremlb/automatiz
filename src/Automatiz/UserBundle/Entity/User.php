@@ -122,4 +122,52 @@ class User extends BaseUser
         $this->lastname = $lastName;
         return $this;
     }
+
+    /**
+     * Add cocktail
+     *
+     * @param \Automatiz\ApiBundle\Entity\Cocktail $cocktail
+     *
+     * @return User
+     */
+    public function addCocktail(\Automatiz\ApiBundle\Entity\Cocktail $cocktail)
+    {
+        $this->cocktails[] = $cocktail;
+
+        return $this;
+    }
+
+    /**
+     * Remove cocktail
+     *
+     * @param \Automatiz\ApiBundle\Entity\Cocktail $cocktail
+     */
+    public function removeCocktail(\Automatiz\ApiBundle\Entity\Cocktail $cocktail)
+    {
+        $this->cocktails->removeElement($cocktail);
+    }
+
+    /**
+     * Add stat
+     *
+     * @param \Automatiz\ApiBundle\Entity\Stat $stat
+     *
+     * @return User
+     */
+    public function addStat(\Automatiz\ApiBundle\Entity\Stat $stat)
+    {
+        $this->stats[] = $stat;
+
+        return $this;
+    }
+
+    /**
+     * Remove stat
+     *
+     * @param \Automatiz\ApiBundle\Entity\Stat $stat
+     */
+    public function removeStat(\Automatiz\ApiBundle\Entity\Stat $stat)
+    {
+        $this->stats->removeElement($stat);
+    }
 }

@@ -2,58 +2,30 @@
 
 namespace Automatiz\ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * Step
- *
- * @ORM\Table("step")
- * @ORM\Entity(repositoryClass="Automatiz\ApiBundle\Entity\StepRepository")
- */
 class Step
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="id", type="string", length=13)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator")
      */
     private $id;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text")
      */
     private $description;
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="quantity", type="smallint", nullable=true)
      */
     private $quantity;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="liquid", type="string", length=50, nullable=true)
-     *
      */
     private $liquid;
-
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="add_ice", type="boolean")
      */
     private $addIce;
-
     /**
-     * @ORM\ManyToOne(targetEntity="Cocktail", inversedBy="steps")
-     * @ORM\JoinColumn(name="cocktail_id", referencedColumnName="id")
+     * @var Cocktail
      */
     private $cocktail;
 
@@ -229,4 +201,3 @@ class Step
         return "".$this->getId();
     }
 }
-

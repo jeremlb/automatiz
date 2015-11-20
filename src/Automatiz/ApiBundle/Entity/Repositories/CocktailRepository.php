@@ -6,7 +6,7 @@
  * Time: 15:41
  */
 
-namespace Automatiz\ApiBundle\Entity;
+namespace Automatiz\ApiBundle\Entity\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 

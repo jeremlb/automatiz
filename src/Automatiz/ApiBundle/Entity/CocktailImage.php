@@ -1,43 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jeremi
- * Date: 11/11/2015
- * Time: 19:47
- */
 
 namespace Automatiz\ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity()
- * @ORM\Table("cocktail_image")
- */
 class CocktailImage
 {
     /**
-     * @var string
-     * @ORM\Column(name="id", type="string", length=13)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Automatiz\ApiBundle\Doctrine\RandomIdGenerator")
-     *
+     * @var integer
      */
     protected $id;
-
     /**
-     * @ORM\Column(name="url", type="string")
+     * @var string
      */
     protected $url;
-
     /**
-     * @ORM\Column(name="file", type="string")
+     * @var string
      */
     protected $file;
-
     /**
-     * @ORM\Column(name="path", type="string")
+     * @var string
      */
     protected $path;
 
