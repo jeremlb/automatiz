@@ -36,8 +36,6 @@ class Step
     }
 
     /**
-     * Get id
-     *
      * @return integer
      */
     public function getId()
@@ -46,22 +44,16 @@ class Step
     }
 
     /**
-     * Set description
-     *
      * @param string $description
-     *
      * @return Step
      */
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
     public function getDescription()
@@ -70,22 +62,16 @@ class Step
     }
 
     /**
-     * Set quantity
-     *
      * @param integer $quantity
-     *
      * @return Step
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
-
         return $this;
     }
 
     /**
-     * Get quantity
-     *
      * @return integer
      */
     public function getQuantity()
@@ -94,8 +80,6 @@ class Step
     }
 
     /**
-     * Get ice
-     *
      * @return boolean
      */
     public function getAddIce()
@@ -104,22 +88,16 @@ class Step
     }
 
     /**
-     * Set quantity
-     *
      * @param boolean $addIce
-     *
      * @return Step
      */
     public function setAddIce($addIce)
     {
         $this->addIce = $addIce;
-
         return $this;
     }
 
     /**
-     * Get liquid
-     *
      * @return Liquid
      */
     public function getLiquid()
@@ -128,36 +106,26 @@ class Step
     }
 
     /**
-     * Set quantity
-     *
      * @param Liquid $liquid
-     *
      * @return Step
      */
     public function setLiquid($liquid)
     {
         $this->liquid = $liquid;
-
         return $this;
     }
 
     /**
-     * Set cocktail
-     *
      * @param Cocktail $cocktail
-     *
      * @return Step
      */
     public function setCocktail(Cocktail $cocktail)
     {
         $this->cocktail = $cocktail;
-
         return $this;
     }
 
     /**
-     * Get cocktail
-     *
      * @return Cocktail
      */
     public function getCocktail()
@@ -165,12 +133,9 @@ class Step
         return $this->cocktail;
     }
 
-    public function toString()
-    {
-        return $this->getDescription();
-    }
-
-
+    /**
+     * @return bool|null
+     */
     public function getAddIceSerialize() {
         if($this->getQuantity() != 0 && $this->getLiquid() != "") {
             return null;
@@ -179,7 +144,9 @@ class Step
         }
     }
 
-
+    /**
+     * @return null|string
+     */
     public function getLiquidSerialize() {
         if($this->getAddIce() != false) {
             return null;
@@ -188,7 +155,9 @@ class Step
         }
     }
 
-
+    /**
+     * @return int|null
+     */
     public function getQuantitySerialize() {
         if($this->getAddIce() != false) {
             return null;
@@ -197,6 +166,9 @@ class Step
         }
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return "".$this->getId();

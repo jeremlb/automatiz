@@ -14,11 +14,12 @@
             <lifecycle-callback type="prePersist" method="onPrePersist"/>
         </lifecycle-callbacks>
 
-        <one-to-one field="user" target-entity="Automatiz\UserBundle\Entity\User">
+        <many-to-one field="user" target-entity="Automatiz\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" />
             <cascade>
                 <cascade-persist/>
             </cascade>
-        </one-to-one>
+        </many-to-one>
 
         <many-to-one field="cocktail" target-entity="Cocktail" inversed-by="notes">
             <join-column name="cocktail_id" referenced-column-name="id" />
