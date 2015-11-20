@@ -83,14 +83,53 @@ class Cocktail
      */
     private $notes;
 
-    public function __construct(User $user)
+    /**
+     * @var array
+     * @ORM\Column(name="categories", type="array")
+     */
+    private $categories;
+
+
+    /**
+     * @param User $user
+     * @param array $categories
+     */
+    public function __construct(User $user, $categories = array())
     {
         $this->steps = new ArrayCollection();
         $this->stats = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->categories = $categories;
         $this->user = $user;
     }
 
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getName();
+    }
+
+    /**
+     * @return bool
+     */
     public function isNew()
     {
         return ($this->getCreatedAt() == $this->getUpdatedAt())? true: false;
@@ -308,37 +347,68 @@ class Cocktail
     }
 
     /**
-     * @return mixed
+     * @return string/null
      */
     public function getImageUrl()
     {
         if($this->image) {
             return $this->image->getUrl();
         }
+
         return null;
     }
 
     /**
-     * @ORM\PreUpdate()
+     * @param string $category
+     * @return Cocktail
      */
-    public function preUpdate()
+    public function addCategory($category)
     {
-        $this->setUpdatedAt(new \DateTime());
+        if (!$this->hasCategory($category)) {
+            $this->categories[] = strtoupper($category);
+        }
+
+        return $this;
     }
 
     /**
-     * @ORM\PrePersist()
+     * @param string $category
+     * @return boolean
      */
-    public function prePersist()
+    public function hasCategory($category)
     {
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
+        return in_array(strtoupper($category), $this->categories, true);
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function __toString() {
-        return $this->getName();
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param string $category
+     * @return Cocktail
+     */
+    public function removeCategory($category)
+    {
+        if (false !== $key = array_search(strtoupper($category), $this->categories, true)) {
+            unset($this->categories[$key]);
+            $this->categories = array_values($this->categories);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $categories
+     * @return Cocktail
+     */
+    public function setCategories(array $categories)
+    {
+        $this->categories = $categories;
+        return $this;
     }
 }
