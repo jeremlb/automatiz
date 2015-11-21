@@ -3,4 +3,10 @@ Automatiz\UserBundle\Entity\User:
     properties :
       id :
         expose : true
-        groups: [details, me, list]
+        groups: [details_user, me, list]
+      firstname:
+        expose : true
+        groups: [details_user, me]
+      lastname:
+        expose : true
+        groups: [details_user, me]

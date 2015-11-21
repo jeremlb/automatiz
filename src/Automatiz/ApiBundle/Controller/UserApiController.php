@@ -22,15 +22,21 @@ class UserApiController extends Controller
      */
     public function allAction(Request $request)
     {
-        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getEntityManager();
+        $users = $em->getRepository('AutomatizUserBundle:User')->findAll();
+        return array('users' => $users);
+    }
 
-        if($currentUser->hasRole("ROLE_ADMIN")) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $users = $em->getRepository('AutomatizUserBundle:User')->findAll();
-
-            return array('users' => $users);
-        } else {
-            throw new UnauthorizedHttpException("not admin", "Resources not allowed.");
-        }
+    /**
+     * @param Request $request
+     * @param $id
+     * @return array
+     * @Rest\View(serializerGroups={"details_user"})
+     */
+    public function getAction(Request $request, $id)
+    {
+        $userManager = $this->get("fos_user.user_manager");
+        $user = $userManager->findUserBy(array("id" => $id));
+        return(array("user" => $user));
     }
 }

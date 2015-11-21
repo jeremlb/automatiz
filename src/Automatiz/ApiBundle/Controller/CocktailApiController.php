@@ -114,6 +114,13 @@ class CocktailApiController extends Controller
         return $response;
     }
 
+    public function getNoteAction(Request $request, $id)
+    {
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
+
+        return array("notes" => $cocktail->getNotes());
+    }
+
     /**
      * @param Request $request
      * @param Cocktail $cocktail

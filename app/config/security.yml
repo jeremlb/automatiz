@@ -59,7 +59,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/images, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { host: automatiz\.local, path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { host: api\.automatiz\.local, path: ^/api/cocktails, role: ROLE_COCKTAILS }
         - { host: api\.automatiz\.local, path: ^/api/steps    , role: ROLE_COCKTAILS }
@@ -69,3 +68,5 @@ security:
         - { host: automatiz\.local, path: ^/api/steps    , role: IS_AUTHENTICATED_FULLY }
         - { host: automatiz\.local, path: ^/api/me, role: IS_AUTHENTICATED_FULLY }
         - { host: automatiz\.local, path: ^/api/users    , role: ROLE_ADMIN }
+
+        - { host: automatiz\.local, path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

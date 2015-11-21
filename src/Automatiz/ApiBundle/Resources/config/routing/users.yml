@@ -2,3 +2,10 @@ user_all:
     path:  users
     defaults: { _controller: AutomatizApiBundle:UserApi:all, _format: json}
     methods: [GET]
+
+user_get:
+    path:  users/{id}
+    defaults: { _controller: AutomatizApiBundle:UserApi:get, _format: json}
+    methods: [GET]
+    requirements:
+        id: "[a-z0-9]{13}"

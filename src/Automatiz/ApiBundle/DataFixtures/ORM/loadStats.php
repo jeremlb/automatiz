@@ -39,7 +39,7 @@ class loadStats extends AbstractFixture implements OrderedFixtureInterface
 
         $stat = new Stat($admin, $boraBora);
         $manager->persist($stat);
-        
+
         $manager->flush();
     }
 

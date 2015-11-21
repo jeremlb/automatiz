@@ -35,3 +35,10 @@ cocktail_note_post:
     methods: [POST]
     requirements:
         id: "[a-z0-9]{13}"
+
+cocktail_note_get:
+    path:  cocktails/{id}/note
+    defaults: { _controller: AutomatizApiBundle:CocktailApi:getNote, _format: json}
+    methods: [GET]
+    requirements:
+        id: "[a-z0-9]{13}"
