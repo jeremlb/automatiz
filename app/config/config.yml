@@ -96,6 +96,7 @@ fos_rest:
             html: false
         failed_validation: HTTP_BAD_REQUEST
         default_engine: twig
+        serialize_null: false
     routing_loader:
         default_format: json
     serializer:

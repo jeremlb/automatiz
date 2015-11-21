@@ -66,7 +66,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $daiquiri->setImage($image);
         $manager->persist($daiquiri);
 
@@ -78,7 +78,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $pinaColada->setImage($image);
         $manager->persist($pinaColada);
 
@@ -90,7 +90,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $margarita->setImage($image);
         $manager->persist($margarita);
 
@@ -102,7 +102,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $sexOnTheBeach->setImage($image);
         $manager->persist($sexOnTheBeach);
 
@@ -114,7 +114,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $caipirinha->setImage($image);
         $manager->persist($caipirinha);
 
@@ -126,7 +126,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $cosmopolitan->setImage($image);
         $manager->persist($cosmopolitan);
 
@@ -138,7 +138,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $blueLagoon->setImage($image);
         $manager->persist($blueLagoon);
 
@@ -162,7 +162,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $boraBora->setImage($image);
         $manager->persist($boraBora);
 
@@ -174,7 +174,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $zombie->setImage($image);
         $manager->persist($zombie);
 

@@ -9,7 +9,7 @@ FOS\UserBundle\Model\User:
             groups: [list, details_user, me]
         username:
             expose: true
-            groups: [list, details_user, me]
+            groups: [list, details_user, me, cocktails]
         enabled:
             expose: true
             groups: [list, details_user, me]

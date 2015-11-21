@@ -1,9 +1,6 @@
 Automatiz\ApiBundle\Entity\Step:
     exclusion_policy: ALL
     properties:
-        id:
-            expose: true
-            groups: [steps]
         description:
             expose: true
             groups: [steps]
@@ -12,9 +9,6 @@ Automatiz\ApiBundle\Entity\Step:
             accessor:
                 getter: getQuantitySerialize
             groups: [steps]
-#        liquid:
-#            expose: true
-#            groups: [steps]
         addIce:
             expose: true
             serialized_name: addIce
