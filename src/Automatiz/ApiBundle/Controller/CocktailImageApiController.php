@@ -15,6 +15,7 @@ use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class CocktailImageApiController extends Controller
 {
@@ -22,6 +23,12 @@ class CocktailImageApiController extends Controller
      * @Rest\View(statusCode=201)
      * @param Request $request
      * @return Response
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function newAction(Request $request, $id)
     {

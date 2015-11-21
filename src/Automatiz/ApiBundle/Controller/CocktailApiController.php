@@ -11,6 +11,7 @@ use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class CocktailApiController extends Controller
 {
@@ -19,6 +20,15 @@ class CocktailApiController extends Controller
      * @param Request $request
      * @return array|Response
      * @internal param $
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" },
+     *  filters={
+     *      {"name"="name", "dataType"="string"}
+     *  }
+     * )
      */
     public function allAction(Request $request)
     {
@@ -38,6 +48,13 @@ class CocktailApiController extends Controller
      * @param Request $request
      * @param string $id
      * @return array
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" },
+     *  output="Automatiz\ApiBunble\Entity\Cocktail"
+     * )
      */
     public function getAction(Request $request, $id)
     {
@@ -50,6 +67,15 @@ class CocktailApiController extends Controller
      * @param Request $request
      * @return array|Response
      * @internal param $
+     * @ApiDoc(
+     *  resource=true,
+     *  statusCodes={
+     *      201="Returned when successful",
+     *  },
+     *  input="Automatiz\ApiBundle\Form\CocktailType",
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function newAction(Request $request)
     {
@@ -62,6 +88,12 @@ class CocktailApiController extends Controller
      * @param string $id
      * @return Response
      * @internal param $
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function editAction(Request $request, $id)
     {
@@ -74,6 +106,12 @@ class CocktailApiController extends Controller
      * @param Request $request
      * @param string $id
      * @internal param $
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function removeAction(Request $request, $id)
     {
@@ -88,6 +126,12 @@ class CocktailApiController extends Controller
      * @param Request $request
      * @param $id
      * @return Response
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function newNoteAction(Request $request, $id)
     {
@@ -114,6 +158,17 @@ class CocktailApiController extends Controller
         return $response;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return array
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
+     */
     public function getNoteAction(Request $request, $id)
     {
         $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);

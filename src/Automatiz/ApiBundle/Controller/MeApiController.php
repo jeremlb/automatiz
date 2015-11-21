@@ -13,6 +13,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class MeApiController extends Controller
 {
@@ -21,6 +22,12 @@ class MeApiController extends Controller
      * @return array
      *
      * @Rest\View(serializerGroups={"me"})
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function getAction(Request $request)
     {
@@ -29,6 +36,16 @@ class MeApiController extends Controller
         return array("me" => $me);
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
+     */
     public function getStatsAction(Request $request)
     {
         $me = $this->getUser();

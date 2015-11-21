@@ -18,6 +18,7 @@ use FOS\RestBundle\View\View;
 
 use Automatiz\ApiBundle\Form\StepType;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 
 class StepApiController extends Controller
@@ -26,6 +27,12 @@ class StepApiController extends Controller
      * @param $cocktailId
      * @return array
      * @Rest\View(serializerGroups={"steps"})
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function allAction($id)
     {
@@ -46,6 +53,12 @@ class StepApiController extends Controller
      * @param $cocktailId
      * @return array
      * @Rest\View(serializerGroups={"details", "steps"})
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = {"defaultuser" }
+     * )
      */
     public function postAction(Request $request, $id)
     {

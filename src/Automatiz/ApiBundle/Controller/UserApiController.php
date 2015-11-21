@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Automatiz\UserBundle\Entity\User;
 
@@ -19,6 +20,12 @@ class UserApiController extends Controller
      * @return array
      *
      * @Rest\View(serializerGroups={"list"})
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function allAction(Request $request)
     {
@@ -32,6 +39,12 @@ class UserApiController extends Controller
      * @param $id
      * @return array
      * @Rest\View(serializerGroups={"details_user"})
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  views = { "default", "defaultuser" }
+     * )
      */
     public function getAction(Request $request, $id)
     {

@@ -31,6 +31,10 @@ automatiz_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/all.yml"
     prefix: /api
 
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
 automatiz_app:
     resource: "@AutomatizAppBundle/Resources/config/routing.yml"
     prefix:   /
