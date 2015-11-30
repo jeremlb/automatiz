@@ -21,7 +21,7 @@ class DefaultController extends Controller
         return $this->render('AutomatizAppBundle:Default:index.html.twig');
     }
 
-    public function appAction(Request $request, $id) {
+    public function appAction(Request $request) {
         return $this->render('AutomatizAppBundle::index.html.twig');
     }
 }

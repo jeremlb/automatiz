@@ -1,11 +1,20 @@
 <div class="main-section__content">
     <div flex-container="row" flex-gutter="24">
-        <div flex-item>
+        <div flex-item="2" flex-item-order="1">
+            <i class="icon icon--s icon--blue icon--flat mdi mdi-facebook-box" ng-click="shareFB()"></i>
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=An amazing cocktail app&via=automatiz&url={{ getTwitterUrl() }}">
+                <i class="icon icon--s icon--blue icon--flat mdi mdi-twitter-box"></i>
+            </a>
+        </div>
+<!--        <div flex-item>
+
             <div class="card">
+
                 <div flex-container="row" flex-gutter="24">
+
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 
 </div>

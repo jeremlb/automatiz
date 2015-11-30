@@ -3,13 +3,20 @@ automatiz_app:
     host: "automatiz.local"
     defaults: { _controller: AutomatizAppBundle:Default:index }
 
-automatiz_app_route_cocktail:
+automatiz_app_route_cocktail_get:
     path: /cocktails/{id}
     defaults: { _controller: AutomatizAppBundle:Default:app }
     host: "automatiz.local"
     methods: [GET]
     requirements:
         id: "[a-z0-9]{13}"
+
+automatiz_app_route_cocktail:
+    path: /cocktails
+    defaults: { _controller: AutomatizAppBundle:Default:app }
+    host: "automatiz.local"
+    methods: [GET]
+
 automatiz_share:
     path: /share/{id}
     host: "automatiz.local"

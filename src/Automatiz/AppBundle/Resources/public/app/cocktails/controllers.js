@@ -1,7 +1,7 @@
 /**
  * Created by jeremi on 16/11/2015.
  */
-define(["angular", "lumx", "cocktails/services"], function (angular) {
+define(["angular", "lumx", "fb", "cocktails/services"], function (angular) {
     angular.module("cocktails.controllers", ["cocktails.services", "lumx"])
         .controller("CocktailsListCtrl", ["$scope", "CocktailsService", "LxProgressService", function ($scope, CocktailsService, LxProgressService) {
             var cocktails = [];
@@ -12,7 +12,7 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
                 var cocktailRow = [];
 
                 for(var i = 0; i < cocktails.length; i += 1) {
-                    if(i % 4 == 0 && i != 0) {
+                    if(i % 1 == 0 && i != 0) {
                         cocktailsRows.push(cocktailRow);
                         cocktailRow = [];
                         cocktailRow.push(cocktails[i]);
@@ -28,11 +28,15 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
             }
 
             $scope.cocktailsRows = splitCocktailsRow(cocktails);
-            console.log(cocktails.length)
+
+            $scope.cocktails = cocktails;
+
+            console.log(cocktails.length);
             if(cocktails.length === 0) {
                 LxProgressService.circular.show('primary', '#progress');
                 CocktailsService.getCocktails().then(function (cocktailsResp) {
                     cocktails = cocktailsResp;
+                    $scope.cocktails = cocktails;
                     $scope.cocktailsRows = splitCocktailsRow(cocktails);
                     setTimeout(function () {
                         LxProgressService.circular.hide();
@@ -44,6 +48,17 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
 
 
         .controller("CocktailsGetCtrl", ["$scope", "CocktailsService", "LxProgressService", function ($scope, CocktailsService, LxProgressService) {
-            console.log("coucou get");
+            $scope.shareFB = function () {
+                FB.ui({
+                    method: 'feed',
+                    link: 'http://automatiz.local:8000/share/56504284ba66e',
+                    caption: 'An automatiz amazing cocktail',
+                }, function(response){});
+            };
+
+            $scope.getTwitterUrl = function () {
+                return "http://automatiz.local:8000/share/56504284ba66e";
+            }
+
         }]);
 });

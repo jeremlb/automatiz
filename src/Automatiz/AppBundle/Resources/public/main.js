@@ -17,6 +17,7 @@ requirejs.config({
         "moment-with-locales": "../bower_components/moment/min/moment-with-locales",
         "velocity": "../bower_components/velocity/velocity",
         "css": "../bower_components/require-css/css.min",
+        "facebook": '//connect.facebook.net/en_US/sdk'
     },
     shim: {
         "angular": {
@@ -61,6 +62,9 @@ requirejs.config({
         "angular-route": {
             deps: ["angular"],
             exports: "angular-route"
+        },
+        "facebook": {
+            exports: "FB"
         }
     }
 });
@@ -68,6 +72,7 @@ requirejs.config({
 window.name = 'NG_DEFER_BOOTSTRAP!';
 
 requirejs([ "angular", "../app", "angular-route", "lumx", "angular-material",
+        "fb",
         "css!../css/lumx",
         "css!../bower_components/angular-chart.js/dist/angular-chart.min",
         "css!../lib/angular-material-icons/angular-material-icons",
