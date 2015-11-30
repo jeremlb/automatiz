@@ -3,13 +3,13 @@ FOS\UserBundle\Model\User:
     properties :
         lastLogin:
             expose: true
-            groups: [list, details_user, me]
+            groups: [details_user, user_info, user_detail]
         email:
             expose: true
-            groups: [list, details_user, me]
+            groups: [details_user, user_info, user_detail]
         username:
             expose: true
-            groups: [cocktail_info, cocktail_detail, list, details_user, me]
+            groups: [cocktail_info, cocktail_detail, user_info, user_detail]
         enabled:
             expose: true
-            groups: [list, details_user, me]
+            groups: [details_user, user_info, user_detail]

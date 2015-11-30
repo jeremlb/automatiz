@@ -70,7 +70,7 @@ class CocktailApiController extends Controller
     }
 
     /**
-     * @Rest\View(serializerGroups={"cocktail_detail"})
+     *  @Rest\View(serializerGroups={"cocktail_detail"})
      * @param Request $request
      * @param string $id
      * @return array
@@ -124,7 +124,6 @@ class CocktailApiController extends Controller
     }
 
     /**
-     * @Rest\View(serializerGroups={"details"})
      * @param Request $request
      * @param $id
      * @return Response
@@ -160,6 +159,7 @@ class CocktailApiController extends Controller
     }
 
     /**
+     * @Rest\View(serializerGroups={"cocktail_detail"})
      * @param Request $request
      * @param $id
      * @return array

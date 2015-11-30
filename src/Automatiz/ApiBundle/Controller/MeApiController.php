@@ -21,7 +21,7 @@ class MeApiController extends Controller
      * @param Request $request
      * @return array
      *
-     * @Rest\View(serializerGroups={"me"})
+     * @Rest\View(serializerGroups={"user_detail"})
      *
      * @ApiDoc(
      *  resource=true,
@@ -37,13 +37,14 @@ class MeApiController extends Controller
     }
 
     /**
+     * @Rest\View(serializerGroups={"stat_info"})
      * @param Request $request
      * @return array
      *
      * @ApiDoc(
      *  resource=true,
      *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  views = { "stat_info" }
      * )
      */
     public function getStatsAction(Request $request)

@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class StatApiController extends Controller
 {
     /**
-     * @Rest\View(serializerGroups={"details"})
      * @param Request $request
      * @return Response
      */

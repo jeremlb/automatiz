@@ -19,7 +19,7 @@ class UserApiController extends Controller
      * @param Request $request
      * @return array
      *
-     * @Rest\View(serializerGroups={"list"})
+     * @Rest\View(serializerGroups={"user_info"})
      *
      * @ApiDoc(
      *  resource=true,
@@ -38,7 +38,7 @@ class UserApiController extends Controller
      * @param Request $request
      * @param $id
      * @return array
-     * @Rest\View(serializerGroups={"details_user"})
+     * @Rest\View(serializerGroups={"user_detail"})
      *
      * @ApiDoc(
      *  resource=true,

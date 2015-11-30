@@ -1,0 +1,9 @@
+Automatiz\ApiBundle\Entity\Stat:
+  exclusion_policy: ALL
+  properties:
+      createdAt:
+          expose: true
+          groups: [stat_info]
+      cocktail:
+          expose: true
+          groups: [stat_info]

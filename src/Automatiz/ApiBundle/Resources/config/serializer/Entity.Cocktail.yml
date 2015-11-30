@@ -3,7 +3,7 @@ Automatiz\ApiBundle\Entity\Cocktail:
     properties:
         id:
             expose: true
-            groups: [cocktail_info, cocktail_detail]
+            groups: [cocktail_info, cocktail_detail, stat_info]
         name:
             expose: true
             groups: [cocktail_info, cocktail_detail]
