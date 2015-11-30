@@ -1,0 +1,46 @@
+{% extends "AutomatizAppBundle:Default:template.html.twig" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+    <div id="about" name="about" style="height: 88%;">
+        <div class="container">
+            <div class="row white">
+                <div class="col-md-3" style="text-align: center;">
+                    <img style="margin-top: 10px;max-height: 150px;" src="{{ cocktail.imageUrl() }}" alt="">
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 20px;">
+                            <h1>{{ cocktail.getName() }}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ cocktail.getDescription() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row white">
+                <div class="col-md-offset-3 col-md-9">
+                    <h2 style="font-weight: normal; font-size: 20px;">Étapes :</h2>
+                </div>
+            </div>
+            {% for step in cocktail.getSteps() %}
+                <div class="row white">
+                    <div class="col-md-offset-3 col-md-9">
+                        {{ loop.index }} - {{ step.getDescription() }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row white">
+                <div class="col-md-offset-3 col-md-9" style="text-align: right;margin-top: 20px;">
+                    <a href="/cocktails/{{ cocktail.getId() }}" class="btn btn-default btn-md" style="color:#999">Ajouter à ma liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

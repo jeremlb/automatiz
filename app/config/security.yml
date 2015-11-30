@@ -13,12 +13,6 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        #api_host:
-        #    host: automatiz\.local
-        #    pattern:    /api/.*
-        #    http_basic: true
-        #    stateless:  true
-        # disables authentication for assets and the profiler, adapt it according to your needs
         api_oauth:
             pattern: ^/api                             # All URLs are protected
             fos_oauth: true                            # OAuth2 protected resource
@@ -50,23 +44,28 @@ security:
                 login_path: /oauth/v2/auth_login
             anonymous: true
 
+        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
     access_control:
-        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/images, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-
+        # api url by oauth
         - { host: api\.automatiz\.local, path: ^/api/cocktails, role: ROLE_COCKTAILS }
         - { host: api\.automatiz\.local, path: ^/api/steps    , role: ROLE_COCKTAILS }
         - { host: api\.automatiz\.local, path: ^/api/users    , role: ROLE_USER }
+        - { host: api\.automatiz\.local, path: ^/api/me       , role: IS_AUTHENTICATED_FULLY }
 
+        # api url by user cookie
         - { host: automatiz\.local, path: ^/api/cocktails, role: IS_AUTHENTICATED_FULLY }
         - { host: automatiz\.local, path: ^/api/steps    , role: IS_AUTHENTICATED_FULLY }
-        - { host: automatiz\.local, path: ^/api/me, role: IS_AUTHENTICATED_FULLY }
+        - { host: automatiz\.local, path: ^/api/me       , role: IS_AUTHENTICATED_FULLY }
         - { host: automatiz\.local, path: ^/api/users    , role: ROLE_ADMIN }
 
-        - { host: automatiz\.local, path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # access to the app, need login
+        - { host: automatiz\.local, path: ^/cocktails, role: IS_AUTHENTICATED_FULLY}
+
+        # general url without authentification
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

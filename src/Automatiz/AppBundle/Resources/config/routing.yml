@@ -1,11 +1,19 @@
 automatiz_app:
     path:     /
+    host: "automatiz.local"
     defaults: { _controller: AutomatizAppBundle:Default:index }
 
-automatiz_app_slug_2:
-    path:     /{slug}/{id}
-    defaults: { _controller: AutomatizAppBundle:Default:index }
-
-automatiz_app_slug:
-    path:     /{slug}
-    defaults: { _controller: AutomatizAppBundle:Default:index }
+automatiz_app_route_cocktail:
+    path: /cocktails/{id}
+    defaults: { _controller: AutomatizAppBundle:Default:app }
+    host: "automatiz.local"
+    methods: [GET]
+    requirements:
+        id: "[a-z0-9]{13}"
+automatiz_share:
+    path: /share/{id}
+    host: "automatiz.local"
+    defaults: { _controller: AutomatizAppBundle:Share:share}
+    methods: [GET]
+    requirements:
+        id: "[a-z0-9]{13}"
