@@ -160,4 +160,7 @@ nelmio_cors:
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTION']
             max_age: 3600
 
-nelmio_api_doc: ~
+nelmio_api_doc:
+    name: "Automatiz Api Documentation"
+    sandbox:
+        enabled: false

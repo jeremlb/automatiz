@@ -1,0 +1,15 @@
+Automatiz\ApiBundle\Entity\Note:
+    exclusion_policy: ALL
+    properties:
+        note:
+            expose: true
+            groups: [cocktail_detail]
+        createdAt:
+            expose: true
+            groups: [cocktail_detail]
+        user:
+            expose: true
+            groups: [cocktail_detail]
+        comment:
+            expose: true
+            groups: [cocktail_detail]

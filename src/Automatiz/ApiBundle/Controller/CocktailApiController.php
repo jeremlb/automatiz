@@ -16,15 +16,14 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class CocktailApiController extends Controller
 {
     /**
-     * @Rest\View(serializerGroups={"default", "defaultuser"})
+     * @Rest\View(serializerGroups={"cocktail_info"})
      * @param Request $request
      * @return array|Response
      * @internal param $
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" },
+     *  description="Retrieve all cocktails",
      *  filters={
      *      {"name"="name", "dataType"="string"}
      *  }
@@ -44,42 +43,47 @@ class CocktailApiController extends Controller
     }
 
     /**
-     * @Rest\View(serializerGroups={"details", "steps", "cocktails"})
-     * @param Request $request
-     * @param string $id
-     * @return array
-     *
-     * @ApiDoc(
-     *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" },
-     *  output="Automatiz\ApiBunble\Entity\Cocktail"
-     * )
-     */
-    public function getAction(Request $request, $id)
-    {
-        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
-        return array('cocktail' => $cocktail);
-    }
-
-    /**
-     * @Rest\View(serializerGroups={"details", "steps"})
+     * @Rest\View()
      * @param Request $request
      * @return array|Response
      * @internal param $
      * @ApiDoc(
      *  resource=true,
      *  statusCodes={
-     *      201="Returned when successful",
+     *      201="cocktail created",
+     *      400="somethings was wrong"
      *  },
-     *  input="Automatiz\ApiBundle\Form\CocktailType",
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  parameters={
+     *      {"name"="name", "dataType"="dtring", "required"=true, "description"="category id"},
+     *      {"name"="description", "dataType"="string", "required"=true, "description"="category id"},
+     *      {"name"="steps", "dataType"="array<Step>", "required"=true, "description"="category id"},
+     *      {"name"="Step.description", "dataType"="string", "required"=true, "description"="category id"},
+     *      {"name"="Step.liquid", "dataType"="string", "required"=true, "description"="category id"},
+     *      {"name"="Step.addIce", "dataType"="boolean", "required"=true, "description"="category id"},
+     *  },
+     *  description="Create a new cocktail",
      * )
      */
     public function newAction(Request $request)
     {
         return $this->processForm($request, new Cocktail($this->getUser()));
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"cocktail_detail"})
+     * @param Request $request
+     * @param string $id
+     * @return array
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Retrieve a cocktail",
+     * )
+     */
+    public function getAction(Request $request, $id)
+    {
+        $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
+        return array('cocktail' => $cocktail);
     }
 
     /**
@@ -91,8 +95,7 @@ class CocktailApiController extends Controller
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  description="Update a cocktail",
      * )
      */
     public function editAction(Request $request, $id)
@@ -109,8 +112,7 @@ class CocktailApiController extends Controller
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  description="Delete a cocktail",
      * )
      */
     public function removeAction(Request $request, $id)
@@ -129,8 +131,7 @@ class CocktailApiController extends Controller
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  description="Add a note to a cocktail",
      * )
      */
     public function newNoteAction(Request $request, $id)
@@ -165,8 +166,7 @@ class CocktailApiController extends Controller
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="This is a description of your API method",
-     *  views = { "default", "defaultuser" }
+     *  description="Retrieve the cocktail note",
      * )
      */
     public function getNoteAction(Request $request, $id)

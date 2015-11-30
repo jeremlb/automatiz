@@ -372,8 +372,9 @@ class Cocktail
         return $this;
     }
 
+    /* Method for serialization */
+
     /**
-     * Used by JMS Serializer
      * @return string/null
      */
     public function getImageUrl()
@@ -383,5 +384,20 @@ class Cocktail
         }
 
         return null;
+    }
+
+    public function getNoteInfo()
+    {
+        $notes = $this->getNotes();
+
+        $nb_notes = sizeof($notes);
+        $sum = 0;
+
+        foreach($notes as $key => $note)
+        {
+            $sum += $note->getNote();
+        }
+
+        return ($nb_notes > 0)? round(($sum / $nb_notes), 1): null;
     }
 }

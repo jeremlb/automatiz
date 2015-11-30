@@ -3,43 +3,41 @@ Automatiz\ApiBundle\Entity\Cocktail:
     properties:
         id:
             expose: true
-            groups: [default, details]
+            groups: [cocktail_info, cocktail_detail]
         name:
             expose: true
-            groups: [default, details]
+            groups: [cocktail_info, cocktail_detail]
         hasAlcoohol:
             expose: true
-            serialized_name: hasAlcohol
-            groups: [default, details]
+            serialized_name: has_alcohol
+            groups: [cocktail_info, cocktail_detail]
         createdAt:
             expose: true
-            groups: [default, details]
+            groups: [cocktail_info, cocktail_detail]
         updatedAt:
             expose: true
-            groups: [default, details]
-        note:
-            expose: true
-            groups: [default, details]
+            groups: [cocktail_info, cocktail_detail]
         description:
             expose: true
-            groups: [default, details]
-        steps:
-            expose: true
-            groups: [details]
+            groups: [cocktail_info, cocktail_detail]
         user:
             expose: true
-            groups: [details]
+            groups: [cocktail_info, cocktail_detail]
+        notes:
+            expose: true
+            max_depth: 10
+            groups: [cocktail_detail]
+        steps:
+            expose: true
+            groups: [cocktail_detail]
+
 
     virtual_properties:
         getImageUrl:
-            groups: [default, details]
+            groups: [cocktail_info, cocktail_detail]
             type: string
             serialized_name: image
-    relations:
-        -
-            rel: self
-            href:
-                route: cocktail_get
-                parameters:
-                    id: expr(object.id)
-                absolute: true
+        getNoteInfo:
+            groups: [cocktail_info, cocktail_detail]
+            type: double
+            serialized_name: note_avairage

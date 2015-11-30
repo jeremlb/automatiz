@@ -3,9 +3,17 @@
 namespace Automatiz\ApiBundle\Entity;
 
 use Automatiz\UserBundle\Entity\User;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
+/**
+ * Class Note
+ */
 class Note
 {
+    /**
+     * @var string
+     */
     protected $id;
 
     /**

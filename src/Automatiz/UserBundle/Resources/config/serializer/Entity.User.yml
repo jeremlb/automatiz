@@ -3,7 +3,7 @@ Automatiz\UserBundle\Entity\User:
     properties :
       id :
         expose : true
-        groups: [details_user, me, list]
+        groups: [cocktail_info, cocktail_detail, details_user, me, list]
       firstname:
         expose : true
         groups: [details_user, me]

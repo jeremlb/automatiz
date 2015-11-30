@@ -3,20 +3,20 @@ Automatiz\ApiBundle\Entity\Step:
     properties:
         description:
             expose: true
-            groups: [steps]
+            groups: [cocktail_detail]
         quantity:
             expose: true
             accessor:
                 getter: getQuantitySerialize
-            groups: [steps]
+            groups: [cocktail_detail]
         addIce:
             expose: true
             serialized_name: addIce
             accessor:
                 getter: getAddIceSerialize
-            groups: [steps]
+            groups: [cocktail_detail]
     virtual_properties:
         getLiquidSerialize:
-            groups: [steps]
+            groups: [cocktail_detail]
             type: string
             serialized_name: liquid
