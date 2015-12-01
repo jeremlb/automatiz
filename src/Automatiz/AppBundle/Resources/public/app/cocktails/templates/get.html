@@ -1,20 +1,32 @@
 <div class="main-section__content">
     <div flex-container="row" flex-gutter="24">
-        <div flex-item="2" flex-item-order="1">
-            <i class="icon icon--s icon--blue icon--flat mdi mdi-facebook-box" ng-click="shareFB()"></i>
-            <a target="_blank" href="https://twitter.com/intent/tweet?text=An amazing cocktail app&via=automatiz&url={{ getTwitterUrl() }}">
-                <i class="icon icon--s icon--blue icon--flat mdi mdi-twitter-box"></i>
-            </a>
-        </div>
-<!--        <div flex-item>
-
-            <div class="card">
-
-                <div flex-container="row" flex-gutter="24">
-
-                </div>
+        <div flex-item="12">
+            <div flex-item="2" flex-item-order="1">
+                Partager
+                <i class="icon icon--s icon--blue icon--flat mdi mdi-facebook-box" ng-click="shareFB()"></i>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text=An amazing cocktail app&via=automatiz&url={{ getTwitterUrl() }}">
+                    <i class="icon icon--s icon--blue icon--flat mdi mdi-twitter-box"></i>
+                </a>
             </div>
-        </div>-->
+        </div>
+    </div>
+    <div flex-container="row" flex-gutter="24">
+        <div flex-item="2" flex-item-order="1">
+            <img src="{{ cocktail.image }}" alt="">
+        </div>
+        <div flex-item="10" flex-item-order="2">
+            <h1>{{ cocktail.name }}</h1>
+            <p>{{cocktail.description}}</p>
+        </div>
+    </div>
+    <div flex-container="row" flex-gutter="24">
+        <div flex-item="2" flex-item-order="1"></div>
+        <div flex-item="10" flex-item-order="2">
+            <div>Etapes :</div>
+            <div ng-repeat="step in cocktail.steps">
+                {{ $index + 1 }} - {{ step.description }}
+            </div>
+        </div>
     </div>
 
 </div>

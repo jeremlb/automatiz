@@ -47,18 +47,26 @@ define(["angular", "lumx", "fb", "cocktails/services"], function (angular) {
         }])
 
 
-        .controller("CocktailsGetCtrl", ["$scope", "CocktailsService", "LxProgressService", function ($scope, CocktailsService, LxProgressService) {
+        .controller("CocktailsGetCtrl", ["$scope", "$routeParams", "CocktailsService", "LxProgressService", function ($scope, $routeParams, CocktailsService, LxProgressService) {
+            $scope.cocktail = {};
+
             $scope.shareFB = function () {
                 FB.ui({
                     method: 'feed',
-                    link: 'http://automatiz.local:8000/share/56504284ba66e',
-                    caption: 'An automatiz amazing cocktail',
+                    link: 'http://automatiz.local:8000/share/' + $scope.cocktail.id,
+                    caption: 'An automatiz amazing cocktail'
                 }, function(response){});
             };
 
             $scope.getTwitterUrl = function () {
-                return "http://automatiz.local:8000/share/56504284ba66e";
-            }
+                return "http://automatiz.local:8000/share/" + $scope.cocktail.id;
+            };
 
+            CocktailsService.getCocktail($routeParams.id).then(function (response) {
+                $scope.cocktail = response;
+                console.log($scope.cocktail);
+            }, function () {
+                console.log("ERROR");
+            });
         }]);
 });

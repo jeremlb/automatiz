@@ -13,31 +13,32 @@
     <div flex-container="row" flex-gutter="24" class="row-container" ng-repeat="cocktail in cocktails">
         <div flex-item="12">
             <div class="card">
-                <div class="card__img card__img--top">
-                    <img src="{{cocktail.image}}">
-                </div>
-
-                <div class="p+">
-                    <span class="fs-subhead tc-black-2 display-block">{{cocktail.name}}</span>
-                    <div class="paragraph fs-body-1">
-                        <p>{{cocktail.description}}</p>
+                <div flex-container="row" flex-gutter="24">
+                    <div flex-item="2" class="img__card">
+                        <img src="{{cocktail.image}}">
                     </div>
-                </div>
-
-                <div class="card__actions">
-                    <a href="#/"><button class="btn btn--m btn--black btn--flat" lx-ripple>Share</button></a>
-                    <a href="{{'/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Show</button></a>
+                    <div flex-item="10">
+                        <div class="p+">
+                            <span class="fs-subhead tc-black-2 display-block">{{cocktail.name}}</span>
+                            <div class="paragraph fs-body-1">
+                                <p>{{cocktail.description}}</p>
+                            </div>
+                        </div>
+                        <div class="card__actions">
+                            <a href="#/"><button class="btn btn--m btn--black btn--flat" lx-ripple>Share</button></a>
+                            <a href="{{'/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Show</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="fab cocktail-button">
-        <a href="#/cocktails/new">
-            <button class="fab__primary btn btn--xl btn--blue btn--fab" lx-ripple> <!-- lx-tooltip="Lorem Ipsum" tooltip-position="left"-->
-                <i class="mdi mdi-plus"></i>
-                <i class="mdi mdi-martini"></i>
-            </button>
-        </a>
-    </div>
+</div>
+<div class="fab cocktail-button">
+    <a href="#/cocktails/new">
+        <button class="fab__primary btn btn--xl btn--blue btn--fab" lx-ripple> <!-- lx-tooltip="Lorem Ipsum" tooltip-position="left"-->
+            <i class="mdi mdi-plus"></i>
+            <i class="mdi mdi-martini"></i>
+        </button>
+    </a>
 </div>

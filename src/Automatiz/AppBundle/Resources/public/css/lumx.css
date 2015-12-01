@@ -12426,7 +12426,8 @@ body {
     text-decoration: none; }
 
 .main-section__content {
-  padding: 24px; }
+  padding: 24px;
+  margin-bottom: 40px; }
   .main-section__content p > code {
     padding: 2px 4px;
     font-size: 90%;
@@ -12444,8 +12445,7 @@ body {
   line-height: 1; }
 
 .cocktail-button {
-  position: absolute;
-  float: right;
+  position: fixed;
   bottom: 20px;
   right: 20px; }
 
@@ -12455,6 +12455,11 @@ body {
 .progress {
   position: relative;
   left: 45%; }
+
+.img__card img {
+  height: 110px;
+  margin: auto;
+  margin-top: 20px; }
 
 .footer {
   padding-bottom: 24px;

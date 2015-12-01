@@ -150,7 +150,7 @@ class loadImages extends AbstractFixture implements OrderedFixtureInterface, Con
         $image = new Image();
         $image->setFile($fileName);
         $image->setPath($imageDir);
-        $image->setUrl("/web/uploads/cocktails_pictures/".$fileName);
+        $image->setUrl("/uploads/cocktails_pictures/".$fileName);
         $tequilaSunrise->setImage($image);
         $manager->persist($tequilaSunrise);
 

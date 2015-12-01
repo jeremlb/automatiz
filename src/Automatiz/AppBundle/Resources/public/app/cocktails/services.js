@@ -5,6 +5,8 @@ define(["angular", "common/constants"], function (angular) {
 
                 var cocktails = null;
 
+                var cocktailsDetails = {};
+
                 function getCocktails () {
                     var defered = $q.defer();
 
@@ -28,8 +30,27 @@ define(["angular", "common/constants"], function (angular) {
                     return defered.promise;
                 }
 
-                function getCocktail() {
+                function getCocktail(id) {
+                    var defered = $q.defer();
 
+                    if(!cocktailsDetails.hasOwnProperty(id)) {
+                        $http({
+                            url : CocktailApi.url + "/" + id,
+                            method: "GET",
+                            headers: {
+                                "Content-type": "application/json"
+                            }
+
+                        }).then(function (response) {
+                            cocktailsDetails[id] = response.data.cocktail;
+                            defered.resolve(cocktailsDetails[id]);
+                        }, function () {
+                            defered.error();
+                        });
+                    } else {
+                        defered.resolve(cocktailsDetails[id]);
+                    }
+                    return defered.promise;
                 }
 
                 return {

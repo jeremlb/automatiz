@@ -16,7 +16,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class CocktailApiController extends Controller
 {
     /**
-     * @Rest\View(serializerGroups={"cocktail_info"})
+     * @Rest\View(serializerGroups={"cocktail_detail"})
      * @param Request $request
      * @return array|Response
      * @internal param $
