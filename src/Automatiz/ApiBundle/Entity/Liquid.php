@@ -17,7 +17,7 @@ class Liquid
      */
     protected $isAlcohol;
 
-    public function __construct($name, $isAlcohol = false)
+    public function __construct($name = null, $isAlcohol = false)
     {
         $this->name = $name;
         $this->isAlcohol = $isAlcohol;

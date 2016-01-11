@@ -1,5 +1,9 @@
 {% extends "AutomatizAppBundle:Default:template.html.twig" %}
 
+{% block script %}
+    <script src="/bundles/automatizapp/bower_components/ismobile/isMobile.min.js"></script>
+{% endblock %}
+
 {% block nav %}
 {% endblock %}
 
@@ -39,8 +43,33 @@
                 <div class="col-md-offset-3 col-md-9" style="text-align: right;margin-top: 20px;">
                     <a href="/cocktails/{{ cocktail.getId() }}" class="btn btn-default btn-md" style="color:#999">Ajouter à ma liste</a>
                 </div>
+
+                <a href="automatiz://automatiz.fr/test" target="_blank">TEST</a>
             </div>
         </div>
     </div>
+
+    <script>
+        (function () {
+            var MOBILE_SITE = '/mobile/index.html', // site to redirect to
+                    NO_REDIRECT = 'noredirect'; // cookie to prevent redirect
+
+            var url = window.location.href.replace("http://automatiz.local:8000/", "").replace("http://www.automatiz.fr/", "");
+            console.log(url);
+            // I only want to redirect iPhones, Android phones and a handful of 7" devices
+            if (isMobile.apple.phone || isMobile.android.phone || isMobile.seven_inch) {
+                console.log("automatiz://" + url)
+                var frame = document.createElement('iframe');
+                frame.src = "automatiz://automatiz.fr/" + url;
+                frame.style.display = 'none';
+                document.body.appendChild(frame);
+
+                document.location.replace("automatiz://automatiz.fr/test");
+
+// the following is optional, just to avoid an unnecessary iframe on the page
+             //   setTimeout(function() { document.body.removeChild(frame); }, 4);
+            }
+        })();
+    </script>
 
 {% endblock %}

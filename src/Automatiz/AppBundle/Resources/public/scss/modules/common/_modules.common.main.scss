@@ -108,3 +108,15 @@ $warning-color: #E75753;
 	margin: auto;
 	margin-top: 20px;
 }
+
+.nav-right {
+	text-align: right;
+
+	button, a {
+		margin-right: 10px;
+	}
+}
+
+.nav-create-cocktail {
+	margin-top: 0px !important;
+}

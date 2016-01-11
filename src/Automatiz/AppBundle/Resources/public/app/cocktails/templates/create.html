@@ -1,0 +1,77 @@
+<div class="main-section__content">
+    <!-- NAV -->
+    <div class="tc-white-1" flex-gutter="24">
+        <div class="mt nav-create-cocktail nav-right">
+            <button class="btn btn--l btn--black btn--flat" lx-ripple>Discard</button>
+            <button class="btn btn--l btn--blue btn--flat" lx-ripple>Save</button>
+        </div>
+    </div>
+    <!-- END NAV -->
+
+    <!-- GENERAL SECTION -->
+    <div flex-container="row">General</div>
+    <div flex-container="row" flex-gutter="24">
+        <div flex-item>
+            <lx-text-field label="Name">
+                <input type="text" ng-model="textFields.firstName">
+            </lx-text-field>
+        </div>
+    </div>
+    <div flex-container="row">
+        <div flex-item>
+            <lx-text-field label="Description">
+                <textarea ng-model="textFields.description"></textarea>
+            </lx-text-field>
+        </div>
+    </div>
+    <!-- END GENERAL SECTION -->
+
+    <!-- STEPS SECTION -->
+    <div flex-container="row">Steps</div>
+    <div class="tc-white-1 mt++" flex-container="row" flex-gutter="24">
+        <div flex-item="1">
+            <div class="p++ bgc-red-500"></div>
+        </div>
+        <div flex-item="3">
+            <lx-select ng-model="selects.selectedPerson" placeholder="Lorem Ipsum" choices="people" floating-label>
+                <lx-select-selected>
+                    {{ $selected.name + ' ' + $selected.age }}
+                </lx-select-selected>
+
+                <lx-select-choices>
+                    {{ $choice.email }}
+                </lx-select-choices>
+            </lx-select>
+        </div>
+        <div flex-item="1">
+            <lx-text-field label="Qty">
+                <input type="text" ng-model="textFields.firstName">
+            </lx-text-field>
+        </div>
+        <div flex-item="6">
+            <lx-text-field label="Description">
+                <input type="text" ng-model="textFields.firstName">
+            </lx-text-field>
+        </div>
+
+        <div flex-item="1">
+            <i class="icon icon--s icon--red icon--flat mdi mdi-close"></i>
+        </div>
+    </div>
+    <div class="tc-white-1" flex-gutter="24">
+        <div class="mt nav-right ">
+            <button class="btn btn--s btn--white btn--raised" lx-ripple>Add a step</button>
+            <button class="btn btn--s btn--white btn--raised" lx-ripple>Add ice</button>
+        </div>
+    </div>
+    <!-- END STEPS SECTION -->
+
+    <!-- PICTURE SECTION -->
+    <div flex-container="row">Picture</div>
+    <div flex-container="row" flex-gutter="24">
+        <div flex-item="6" flex-item-order="1">
+            <lx-file-input label="Select a picture..."></lx-file-input>
+        </div>
+    </div>
+    <!-- END PICTURE SECTION -->
+</div>

@@ -33,10 +33,22 @@ class CocktailApiController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
+        $status = false;
+        $cocktails = [];
         if($request->query->get('name') !== null) {
+            $status = true;
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
-        } else {
+        }
+
+        if($request->query->get('liquid') !== null) {
+            $status = true;
+            $cocktails = $em->getRepository('AutomatizApiBundle:Liquid')->findCocktailsByLiquid($request->query->get('liquid'));
+        }
+
+        if($status == false) {
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAll();
+        } else {
+
         }
 
         return array('cocktails' => $cocktails);

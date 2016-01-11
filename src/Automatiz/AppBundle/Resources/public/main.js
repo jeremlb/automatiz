@@ -72,7 +72,7 @@ requirejs.config({
 window.name = 'NG_DEFER_BOOTSTRAP!';
 
 requirejs([ "angular", "../app", "angular-route", "lumx", "angular-material",
-        "fb",
+        //"fb",
         "css!../css/lumx",
         "css!../bower_components/angular-chart.js/dist/angular-chart.min",
         "css!../lib/angular-material-icons/angular-material-icons",

@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),q
             new Automatiz\ApiBundle\AutomatizApiBundle(),
             new Automatiz\OauthBundle\AutomatizOauthBundle(),
             new Automatiz\UserBundle\AutomatizUserBundle(),

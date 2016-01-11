@@ -24,7 +24,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/oauth-server-bundle": "^1.4",
         "nelmio/cors-bundle": "^1.4",
-        "nelmio/api-doc-bundle": "^2.10"
+        "nelmio/api-doc-bundle": "^2.10",
+	"suncat/mobile-detect-bundle": "0.10.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

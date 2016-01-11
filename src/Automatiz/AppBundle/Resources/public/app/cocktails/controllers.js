@@ -1,7 +1,7 @@
 /**
  * Created by jeremi on 16/11/2015.
  */
-define(["angular", "lumx", "fb", "cocktails/services"], function (angular) {
+define(["angular", "lumx", "cocktails/services"], function (angular) {
     angular.module("cocktails.controllers", ["cocktails.services", "lumx"])
         .controller("CocktailsListCtrl", ["$scope", "CocktailsService", "LxProgressService", function ($scope, CocktailsService, LxProgressService) {
             var cocktails = [];
@@ -68,5 +68,8 @@ define(["angular", "lumx", "fb", "cocktails/services"], function (angular) {
             }, function () {
                 console.log("ERROR");
             });
+        }])
+        .controller("CocktailsNewCtrl", [function () {
+            this.test = "12345";
         }]);
 });

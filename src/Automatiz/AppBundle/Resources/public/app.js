@@ -1,5 +1,5 @@
 /*jshint unused: vars */
-define(['angular', 'lumx', "fb", 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', "angular-material-icons", "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
+define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', "angular-material-icons", "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
     'use strict';
 
     /**
@@ -31,6 +31,11 @@ define(['angular', 'lumx', "fb", 'dashboard/controller', 'common/sidebar/control
             .when('/cocktails', {
                 templateUrl: '/bundles/automatizapp/app/cocktails/templates/cocktails.html',
                 controller: "CocktailsListCtrl"
+            })
+            .when('/cocktails/new', {
+                templateUrl: '/bundles/automatizapp/app/cocktails/templates/create.html',
+                controller: "CocktailsNewCtrl",
+                controllerAs: "newCtrl"
             })
             .when('/cocktails/:id', {
                 templateUrl: '/bundles/automatizapp/app/cocktails/templates/get.html',
