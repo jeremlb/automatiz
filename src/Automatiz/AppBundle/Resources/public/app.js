@@ -1,5 +1,5 @@
 /*jshint unused: vars */
-define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', "angular-material-icons", "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
+define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', 'common/controller', "angular-material-icons", "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
     'use strict';
 
     /**
@@ -12,6 +12,7 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
             'ngMdIcons',
             'common.header',
             'common.sidebar',
+            'common.controller',
             'users.controllers',
             'cocktails.controllers'
         ]);
@@ -22,6 +23,8 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
             requireBase: false
         });
 
+
+        console.log("coucou");
         $routeProvider.
             when('/', {
                 templateUrl: '/bundles/automatizapp/app/dashboard/dashboard.html',

@@ -7,10 +7,6 @@ body {
  	font-family: 'Roboto', sans-serif;
 }
 
-
-
-
-
 // Wrapper
 .wrapper {
     @include media-query(desk) {

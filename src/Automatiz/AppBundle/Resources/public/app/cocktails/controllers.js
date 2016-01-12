@@ -31,6 +31,8 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
 
             $scope.cocktails = cocktails;
 
+            $scope.$emit("page-change", {page: "list-cocktail", title: "Liste des cocktails"});
+
             console.log(cocktails.length);
             if(cocktails.length === 0) {
                 LxProgressService.circular.show('primary', '#progress');
@@ -65,9 +67,13 @@ define(["angular", "lumx", "cocktails/services"], function (angular) {
             CocktailsService.getCocktail($routeParams.id).then(function (response) {
                 $scope.cocktail = response;
                 console.log($scope.cocktail);
+
+                $scope.$emit("page-change", {page: "get-cocktail", title: response.name});
             }, function () {
                 console.log("ERROR");
             });
+
+            $scope.$emit("page-change", {page: "get-cocktail", title: ""});
         }])
         .controller("CocktailsNewCtrl", [function () {
             this.test = "12345";

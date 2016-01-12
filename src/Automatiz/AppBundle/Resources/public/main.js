@@ -86,4 +86,7 @@ requirejs([ "angular", "../app", "angular-route", "lumx", "angular-material",
     angular.element(document).ready(function() {
         angular.resumeBootstrap();
     });
+
+
+
 });
