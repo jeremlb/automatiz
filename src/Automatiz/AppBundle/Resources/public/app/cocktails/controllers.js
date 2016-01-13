@@ -1,11 +1,11 @@
 /**
  * Created by jeremi on 16/11/2015.
  */
-define(["angular", "lumx", "cocktails/services"], function (angular) {
-var module = angular.module("cocktails.controllers", ["cocktails.services", "lumx"]);
+define(["angular", "lumx", "cocktails/services", "cocktails/filters"], function (angular) {
+var module = angular.module("cocktails.controllers", ["cocktails.services", "cocktails.filters", "lumx"]);
 
-module.controller("CocktailsListCtrl", ["$scope", "$location", "ShareCocktail", "Cocktail", "LxProgressService",
-function ($scope, $location, ShareCocktail, Cocktail, LxProgressService) {
+module.controller("CocktailsListCtrl", ["$scope", "ShareCocktail", "Cocktail", "LxProgressService",
+function ($scope, ShareCocktail, Cocktail, LxProgressService) {
     var cocktails = [];
     $scope.$emit("page-change", {page: "list-cocktail", title: "Liste de cocktails"});
 
@@ -38,23 +38,31 @@ function ($scope, $location, ShareCocktail, Cocktail, LxProgressService) {
         return ShareCocktail.twitter(cocktailId);
     };
 
-
+    $scope.textSearch = function (cocktails, text, text2) {
+        console.log(cocktails);
+        console.log(text);
+        console.log(text2);
+        return cocktails;
+    };
 
     $scope.cocktailsRows = splitCocktailsRow(cocktails);
     $scope.cocktails = cocktails;
+
+    LxProgressService.circular.show("primary", "#progress");
 
     Cocktail.query().then(function (response) {
         cocktails = response.data.cocktails;
         $scope.cocktails = cocktails;
         $scope.cocktailsRows = splitCocktailsRow(cocktails);
-        setTimeout(function () {
-            LxProgressService.circular.hide();
-        }, 10);
+        LxProgressService.circular.hide();
     });
 }]);
 
-module.controller("CocktailsGetCtrl", ["$scope", "$location", "ShareCocktail", "$routeParams", "Cocktail", "LxProgressService",
-function ($scope, $location, ShareCocktail, $routeParams, Cocktail, LxProgressService) {
+module.controller("CocktailsGetCtrl", [
+    "$scope", "$routeParams",
+    "Cocktail", "Note", "ShareCocktail",
+    "LxDialogService", "LxNotificationService",
+function ($scope, $routeParams, Cocktail, Note, ShareCocktail, LxDialogService, LxNotificationService) {
     $scope.cocktail = {};
 
     $scope.shareFB = function () {
@@ -65,14 +73,34 @@ function ($scope, $location, ShareCocktail, $routeParams, Cocktail, LxProgressSe
         return ShareCocktail.twitter($routeParams.id);
     };
 
-    Cocktail.get({id: $routeParams.id}).then(function (response) {
-        console.log(response);
-        $scope.cocktail = response.data.cocktail;
+    $scope.noteThisCocktail = function () {
+        $scope.note = {};
+        LxDialogService.open("test");
 
-        $scope.$emit("page-change", {page: "get-cocktail", title: $scope.cocktail.name});
-    });
+    };
+
+    $scope.sendNote = function () {
+        var note = {
+            note: parseInt($scope.note.note, 10),
+            comment: $scope.note.comment
+        };
+        Note.save({id:$scope.cocktail.id}, note).$promise.then(function (response) {
+            LxNotificationService.success("Note enregistré.");
+            getCocktail($scope.cocktail.id);
+        });
+    };
+
+    function getCocktail(id) {
+        Cocktail.get({id: id}).then(function (response) {
+            console.log(response);
+            $scope.cocktail = response.data.cocktail;
+
+            $scope.$emit("page-change", {page: "get-cocktail", title: $scope.cocktail.name, backArraow: true});
+        });
+    }
 
     $scope.$emit("page-change", {page: "get-cocktail", title: ""});
+    getCocktail($routeParams.id);
 }]);
 
 module.controller("CocktailsNewCtrl", ["LxNotificationService", "Liquid", "Cocktail", "CocktailImage", "$location", "$scope",

@@ -73,6 +73,12 @@ module.service("Liquid", ["$resource", function ($resource) {
     });
 }]);
 
+module.service("Note", ["$resource", function ($resource) {
+    return $resource("/api/cocktails/:id/note", {id: "@id"}, {
+        save : {method: "POST"}
+    });
+}]);
+
 module.service("ShareCocktail", ["$location", function ($location) {
     var service = {
         facebook: shareFacebook,

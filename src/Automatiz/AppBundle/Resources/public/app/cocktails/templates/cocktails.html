@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div flex-container="row" flex-gutter="24" class="row-container" ng-repeat="cocktail in cocktails">
+    <div flex-container="row" flex-gutter="24" class="row-container" ng-repeat="cocktail in cocktails | cocktailsearch:searchFilter">
         <div flex-item="12">
             <div class="card">
                 <div flex-container="row" flex-gutter="24">
