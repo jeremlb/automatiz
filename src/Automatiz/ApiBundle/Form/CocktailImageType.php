@@ -31,7 +31,7 @@ class CocktailImageType extends AbstractType
     public function OptionsResolver(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Automatiz\ApiBundle\Entity\CocktailImage',
+            'data_class' => 'Automatiz\ApiBundle\Entity\Image',
             'csrf_protection' => false
         ));
     }
@@ -40,7 +40,7 @@ class CocktailImageType extends AbstractType
         \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
     ) {
         $resolver->setDefaults(array(
-            'data_class' => 'Automatiz\ApiBundle\Entity\CocktailImage',
+            'data_class' => 'Automatiz\ApiBundle\Entity\Image',
             'csrf_protection' => false
         ));
     }
