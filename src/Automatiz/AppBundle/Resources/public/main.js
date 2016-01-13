@@ -12,6 +12,7 @@ requirejs.config({
         "angular-material-icons": "../lib/angular-material-icons/angular-material-icons",
         "angular-material": "../bower_components/angular-material/angular-material.min",
         "angular-animate":  "../bower_components/angular-animate/angular-animate.min",
+        "angular-resource": "../bower_components/angular-resource/angular-resource.min",
         "svg-morpheus": "../bower_components/svg-morpheus/compile/minified/svg-morpheus",
         "lumx": "../bower_components/lumx/dist/lumx",
         "moment-with-locales": "../bower_components/moment/min/moment-with-locales",
@@ -34,6 +35,10 @@ requirejs.config({
         "angular-animate": {
             deps: ["angular"],
             exports: "angular-animate"
+        },
+        "angular-resource": {
+            deps: ["angular"],
+            exports: "angular-resource"
         },
         "angular-ui-router": {
             deps: ["angular"],

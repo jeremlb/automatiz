@@ -4,7 +4,7 @@
         <div flex-item>
             <div class="card">
                 <div class="toolbar">
-                    <lx-search-filter model="searchFilter" filter-width="100%" placeholder="Search"></lx-search-filter>
+                    <lx-search-filter model="searchFilter" filter-width="100%" placeholder="Rechercher" style="width:100%;"></lx-search-filter>
                 </div>
             </div>
         </div>
@@ -20,13 +20,13 @@
                     <div flex-item="10">
                         <div class="p+">
                             <span class="fs-subhead tc-black-2 display-block">{{cocktail.name}}</span>
-                            <div class="paragraph fs-body-1">
+                            <div class="paragraph fs-body-1" style="min-height:40px;">
                                 <p>{{cocktail.description}}</p>
                             </div>
                         </div>
                         <div class="card__actions">
-                            <a href="#/"><button class="btn btn--m btn--black btn--flat" lx-ripple>Share</button></a>
-                            <a href="{{'/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Show</button></a>
+                            <button class="btn btn--m btn--black btn--flat" lx-ripple>Partager</button>
+                            <a href="{{'/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Voir</button></a>
                         </div>
                     </div>
                 </div>

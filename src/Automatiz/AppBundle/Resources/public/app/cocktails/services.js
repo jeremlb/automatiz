@@ -1,61 +1,76 @@
-define(["angular", "common/constants"], function (angular) {
-    angular.module("cocktails.services", ["common.constants"])
-        .service("CocktailsService", ["$log", "$q", "$http", "CocktailApi",
-            function ($log, $q, $http, CocktailApi) {
+define(["angular", "angular-resource", "common/constants"], function (angular) {
 
-                var cocktails = null;
+var module = angular.module("cocktails.services", ["common.constants", "ngResource"]);
 
-                var cocktailsDetails = {};
+module.service("Cocktail", ["$http", function ($http) {
+    var service = {
+        save: save,
+        get: get,
+        query: query,
+        update: update,
+        remove: remove
+    };
 
-                function getCocktails () {
-                    var defered = $q.defer();
+    var url = '/api/cocktails/:id';
 
-                    if(cocktails === null) {
-                        $http({
-                            url : CocktailApi.url,
-                            method: "GET",
-                            headers: {
-                                "Content-type": "application/json"
-                            }
+    function query() {
+        var uri = url.replace("/:id", "");
+        return $http.get(uri);
+    }
 
-                        }).then(function (response) {
-                            cocktails = response.data.cocktails;
-                            defered.resolve(cocktails);
-                        }, function () {
-                            defered.error();
-                        });
-                    } else {
-                        defered.resolve(cocktails);
-                    }
-                    return defered.promise;
-                }
+    function get(param) {
+        var uri = url.replace(":id", param.id);
+        return $http.get(uri);
+    }
 
-                function getCocktail(id) {
-                    var defered = $q.defer();
+    function save(data) {
+        var uri = url.replace("/:id", "");
+        return $http.post(uri, data, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
 
-                    if(!cocktailsDetails.hasOwnProperty(id)) {
-                        $http({
-                            url : CocktailApi.url + "/" + id,
-                            method: "GET",
-                            headers: {
-                                "Content-type": "application/json"
-                            }
+    function update () {
 
-                        }).then(function (response) {
-                            cocktailsDetails[id] = response.data.cocktail;
-                            defered.resolve(cocktailsDetails[id]);
-                        }, function () {
-                            defered.error();
-                        });
-                    } else {
-                        defered.resolve(cocktailsDetails[id]);
-                    }
-                    return defered.promise;
-                }
+    }
 
-                return {
-                    getCocktails: getCocktails,
-                    getCocktail: getCocktail
-                };
-            }]);
+    function remove () {
+
+    }
+
+    return service;
+}]);
+
+module.service("CocktailImage", ["$http", function ($http) {
+    var service = {
+        save: save
+    };
+
+    function save(param, file) {
+        var data = new FormData();
+        data.append('cocktail_image[file]', file);
+
+        var url = "/api/cocktails/" + param.id + "/image";
+
+        return $http.post(url, data, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        });
+
+    }
+    return service;
+}]);
+
+module.service("Liquid", ["$resource", function ($resource) {
+    return $resource("/api/liquid", {}, {
+        query: {
+            method: "GET",
+            cache: true
+        },
+        save : {method: "POST"}
+    });
+}]);
+
 });

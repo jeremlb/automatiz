@@ -2,75 +2,85 @@
     <!-- NAV -->
     <div class="tc-white-1" flex-gutter="24">
         <div class="mt nav-create-cocktail nav-right">
-            <button class="btn btn--l btn--black btn--flat" lx-ripple>Discard</button>
-            <button class="btn btn--l btn--blue btn--flat" lx-ripple>Save</button>
+            <button class="btn btn--l btn--black btn--flat" lx-ripple ng-click="newCtrl.cancelCocktail()">Quitter</button>
+            <button class="btn btn--l btn--blue  btn--flat" lx-ripple ng-click="newCtrl.saveCocktail()"> Sauvegarder</button>
         </div>
     </div>
     <!-- END NAV -->
 
     <!-- GENERAL SECTION -->
-    <div flex-container="row">General</div>
+    <div flex-container="row">Général</div>
     <div flex-container="row" flex-gutter="24">
         <div flex-item>
-            <lx-text-field label="Name">
-                <input type="text" ng-model="textFields.firstName">
+            <lx-text-field label="Nom du cocktail">
+                <input type="text" ng-model="newCtrl.cocktail.name">
             </lx-text-field>
         </div>
     </div>
     <div flex-container="row">
         <div flex-item>
-            <lx-text-field label="Description">
-                <textarea ng-model="textFields.description"></textarea>
+            <lx-text-field label="Description du cocktail">
+                <textarea ng-model="newCtrl.cocktail.description"></textarea>
             </lx-text-field>
         </div>
     </div>
     <!-- END GENERAL SECTION -->
 
     <!-- STEPS SECTION -->
-    <div flex-container="row">Steps</div>
-    <div class="tc-white-1 mt++" flex-container="row" flex-gutter="24">
+    <div flex-container="row">Étapes</div>
+
+    <div class="tc-white-1 mt++" flex-container="row" flex-gutter="24" ng-repeat="step in newCtrl.cocktail.steps">
         <div flex-item="1">
-            <div class="p++ bgc-red-500"></div>
+            <div class="p+" style="color:black;">
+                {{$index + 1}}
+            </div>
         </div>
-        <div flex-item="3">
-            <lx-select ng-model="selects.selectedPerson" placeholder="Lorem Ipsum" choices="people" floating-label>
+        <div flex-item="3" ng-hide="step.addIce">
+            <lx-select ng-model="step.liquid" placeholder="Sélectionner un liquide" choices="newCtrl.liquids" floating-label style="color:black;">
                 <lx-select-selected>
-                    {{ $selected.name + ' ' + $selected.age }}
+                   {{ $selected.name }}
                 </lx-select-selected>
 
                 <lx-select-choices>
-                    {{ $choice.email }}
+                    {{ $choice.name }}
                 </lx-select-choices>
             </lx-select>
         </div>
-        <div flex-item="1">
-            <lx-text-field label="Qty">
-                <input type="text" ng-model="textFields.firstName">
+
+        <div flex-item="1" ng-hide="step.addIce">
+            <lx-text-field label="Qté (cl)">
+                <input type="text" ng-model="step.quantity" style="color:black;">
             </lx-text-field>
         </div>
-        <div flex-item="6">
+        <div flex-item="6" ng-hide="step.addIce">
             <lx-text-field label="Description">
-                <input type="text" ng-model="textFields.firstName">
+                <input type="text" ng-model="step.description" style="color:black;">
             </lx-text-field>
         </div>
 
-        <div flex-item="1">
-            <i class="icon icon--s icon--red icon--flat mdi mdi-close"></i>
+        <div flex-item="10" ng-show="step.addIce">
+            <div class="p+" style="color:black;">Ajouter de délicieux glaçons à ce cocktail incroyable !</div>
+        </div>
+        <div flex-item="1" ng-click="newCtrl.removeStep($index)" style="position: relative">
+            <i class="icon icon--s icon--black icon--flat mdi mdi-close"style="position:absolute;bottom:0px;"></i>
         </div>
     </div>
     <div class="tc-white-1" flex-gutter="24">
         <div class="mt nav-right ">
-            <button class="btn btn--s btn--white btn--raised" lx-ripple>Add a step</button>
-            <button class="btn btn--s btn--white btn--raised" lx-ripple>Add ice</button>
+            <button class="btn btn--s btn--white btn--raised" lx-ripple ng-click="newCtrl.addStep()">Ajouter une étape</button>
+            <button class="btn btn--s btn--white btn--raised" lx-ripple ng-click="newCtrl.addIce()">Ajouter des glaçons</button>
         </div>
     </div>
     <!-- END STEPS SECTION -->
 
     <!-- PICTURE SECTION -->
-    <div flex-container="row">Picture</div>
+    <div flex-container="row">
+        Image
+       {{ value }}
+    </div>
     <div flex-container="row" flex-gutter="24">
         <div flex-item="6" flex-item-order="1">
-            <lx-file-input label="Select a picture..."></lx-file-input>
+            <lx-file-input label="Sélectionner une image..." change="newCtrl.imageChange(e)"></lx-file-input>
         </div>
     </div>
     <!-- END PICTURE SECTION -->
