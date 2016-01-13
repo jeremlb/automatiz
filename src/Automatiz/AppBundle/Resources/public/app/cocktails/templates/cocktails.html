@@ -25,7 +25,11 @@
                             </div>
                         </div>
                         <div class="card__actions">
-                            <button class="btn btn--m btn--black btn--flat" lx-ripple>Partager</button>
+                            <i class="icon icon--s icon--blue icon--flat mdi mdi-facebook-box" ng-click="shareFB(cocktail.id)"></i>
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=An amazing cocktail app&via=automatiz&url={{ getTwitterUrl(cocktail.id) }}">
+                                <i class="icon icon--s icon--blue icon--flat mdi mdi-twitter-box"></i>
+                            </a>
+
                             <a href="{{'/cocktails/' + cocktail.id}}"><button class="btn btn--m btn--orange btn--flat" lx-ripple>Voir</button></a>
                         </div>
                     </div>

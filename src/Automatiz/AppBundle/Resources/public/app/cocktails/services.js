@@ -1,4 +1,4 @@
-define(["angular", "angular-resource", "common/constants"], function (angular) {
+define(["angular", "fb", "angular-resource", "common/constants"], function (angular) {
 
 var module = angular.module("cocktails.services", ["common.constants", "ngResource"]);
 
@@ -71,6 +71,37 @@ module.service("Liquid", ["$resource", function ($resource) {
         },
         save : {method: "POST"}
     });
+}]);
+
+module.service("ShareCocktail", ["$location", function ($location) {
+    var service = {
+        facebook: shareFacebook,
+        twitter: shareTwitter
+    };
+
+    var port = ($location.port() !== 80)? ":"+$location.port(): "";
+    var url = $location.host() + port + "/share/";
+
+    var text = 'An automatiz amazing cocktail';
+
+    function shareFacebook(cocktailId) {
+        FB.ui({
+            method: 'feed',
+            link: url + cocktailId,
+            caption: text
+        }, function(response){});
+    }
+
+    function shareTwitter(cocktailId) {
+        return [
+            "https://twitter.com/intent/tweet?text=",
+            text,
+            "via=automatiz&url=",
+            url + cocktailId
+        ].join("");
+    }
+
+    return service;
 }]);
 
 });

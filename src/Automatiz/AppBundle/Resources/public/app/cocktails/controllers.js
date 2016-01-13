@@ -4,10 +4,9 @@
 define(["angular", "lumx", "cocktails/services"], function (angular) {
 var module = angular.module("cocktails.controllers", ["cocktails.services", "lumx"]);
 
-module.controller("CocktailsListCtrl", ["$scope", "Cocktail", "LxProgressService",
-function ($scope, Cocktail, LxProgressService) {
+module.controller("CocktailsListCtrl", ["$scope", "$location", "ShareCocktail", "Cocktail", "LxProgressService",
+function ($scope, $location, ShareCocktail, Cocktail, LxProgressService) {
     var cocktails = [];
-
     $scope.$emit("page-change", {page: "list-cocktail", title: "Liste de cocktails"});
 
     function splitCocktailsRow(cocktails)
@@ -31,6 +30,14 @@ function ($scope, Cocktail, LxProgressService) {
         return cocktailsRows;
     }
 
+    $scope.shareFB = function (cocktailId) {
+        ShareCocktail.facebook(cocktailId);
+    };
+
+    $scope.getTwitterUrl = function (cocktailId) {
+        return ShareCocktail.twitter(cocktailId);
+    };
+
 
 
     $scope.cocktailsRows = splitCocktailsRow(cocktails);
@@ -46,20 +53,16 @@ function ($scope, Cocktail, LxProgressService) {
     });
 }]);
 
-module.controller("CocktailsGetCtrl", ["$scope", "$routeParams", "Cocktail", "LxProgressService",
-function ($scope, $routeParams, Cocktail, LxProgressService) {
+module.controller("CocktailsGetCtrl", ["$scope", "$location", "ShareCocktail", "$routeParams", "Cocktail", "LxProgressService",
+function ($scope, $location, ShareCocktail, $routeParams, Cocktail, LxProgressService) {
     $scope.cocktail = {};
 
     $scope.shareFB = function () {
-        FB.ui({
-            method: 'feed',
-            link: 'http://automatiz.local:8000/share/' + $scope.cocktail.id,
-            caption: 'An automatiz amazing cocktail'
-        }, function(response){});
+        ShareCocktail.facebook($routeParams.id);
     };
 
     $scope.getTwitterUrl = function () {
-        return "http://automatiz.local:8000/share/" + $scope.cocktail.id;
+        return ShareCocktail.twitter($routeParams.id);
     };
 
     Cocktail.get({id: $routeParams.id}).then(function (response) {
