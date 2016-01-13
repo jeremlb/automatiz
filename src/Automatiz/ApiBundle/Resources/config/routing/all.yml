@@ -15,3 +15,6 @@ cocktail_image_api:
 
 stat_api:
     resource: "@AutomatizApiBundle/Resources/config/routing/stat.yml"
+
+liquid_api:
+    resource: "@AutomatizApiBundle/Resources/config/routing/liquid.yml"

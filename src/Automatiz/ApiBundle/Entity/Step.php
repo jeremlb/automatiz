@@ -94,6 +94,10 @@ class Step
     public function setAddIce($addIce)
     {
         $this->addIce = $addIce;
+
+        if($addIce == true) {
+            $this->setDescription("");
+        }
         return $this;
     }
 

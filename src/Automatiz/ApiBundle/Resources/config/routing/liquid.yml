@@ -1,0 +1,9 @@
+liquid_all:
+    path:  liquid
+    defaults: { _controller: AutomatizApiBundle:LiquidApi:all, _format: json}
+    methods: [GET]
+
+liquid_post:
+    path:  liquid
+    defaults: { _controller: AutomatizApiBundle:LiquidApi:new, _format: json}
+    methods: [POST]

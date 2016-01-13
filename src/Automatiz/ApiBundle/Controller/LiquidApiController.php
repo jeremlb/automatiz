@@ -24,7 +24,7 @@ class LiquidApiController extends Controller
     public function allAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $liquids = $em->getRepository('AutomatizApiBundle:Cocktail')->findAll();
+        $liquids = $em->getRepository('AutomatizApiBundle:Liquid')->findAll();
         return array('liquids' => $liquids);
     }
 

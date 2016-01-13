@@ -4,3 +4,6 @@ Automatiz\ApiBundle\Entity\Liquid:
         name:
             expose: true
             groups: [steps]
+        id:
+            expose: true
+            groups: [steps]
