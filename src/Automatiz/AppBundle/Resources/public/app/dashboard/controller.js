@@ -10,5 +10,7 @@ define(["angular", "angular-chart"], function (angular) {
             $scope.onClick = function (points, evt) {
                 console.log(points, evt);
             };
+
+            $scope.$emit("page-change", {"page": "home", "title": "Accueil"});
         });
 });

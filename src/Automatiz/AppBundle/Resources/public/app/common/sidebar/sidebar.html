@@ -1,16 +1,20 @@
 <div class="sidebar-filter" ng-class="{ 'sidebar-filter--is-shown': Sidebar.isSidebarShown() }"></div>
 <div class="sidebar" ng-class="{ 'sidebar--is-shown': Sidebar.isSidebarShown() }" ng-controller="SidebarCtrl">
     <ang-accordion>
-        <collapsible-item item-title="Users" item-link="/users">
+        <collapsible-item item-title="Accueil" item-link="/">
         </collapsible-item>
         <collapsible-item item-title="Cocktails" item-link="/cocktails"></collapsible-item>
-        <collapsible-item item-title="Dashboard">
+        <collapsible-item item-title="Mon compte">
             <ul>
                 <li>
-                    <a ng-href="/?p=1">Dashboard</a>
+                    <a ng-href="/me/cocktails">Mes cocktails</a>
                 </li>
+            </ul>
+        </collapsible-item>
+        <collapsible-item item-title="Administration">
+            <ul>
                 <li>
-                    <a ng-href="/cocktails?p=1">Cocktails</a>
+                    <a ng-href="/users">Utilisateurs</a>
                 </li>
             </ul>
         </collapsible-item>
