@@ -154,11 +154,12 @@ class CocktailApiController extends Controller
         {
             $params = json_decode($content, true); // 2nd param to get as array
             $noteParam = $params["note"];
+            $commentParam = $params["comment"];
 
             $user = $this->getUser();
             $cocktail = $this->get("automatiz.cocktail_manager")->getCocktail($id);
 
-            $note = new Note($user, $cocktail, $noteParam);
+            $note = new Note($user, $cocktail, $noteParam, $commentParam);
             $cocktail->addNote($note);
 
             $em = $this->get("doctrine")->getManager();

@@ -46,11 +46,12 @@ class Note
      * @param Cocktail $cocktail
      * @param $note
      */
-    public function __construct(User $user, Cocktail $cocktail, $note)
+    public function __construct(User $user, Cocktail $cocktail, $note, $comment)
     {
         $this->setUser($user);
         $this->setCocktail($cocktail);
         $this->setNote($note);
+        $this->setComment($comment);
     }
 
     public function onPrePersist()
