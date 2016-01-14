@@ -7,3 +7,8 @@ me_stats_get:
     path:  me/stats
     defaults: { _controller: AutomatizApiBundle:MeApi:getStats, _format: json}
     methods: [GET]
+
+me_cocktails_get:
+    path:  me/cocktails
+    defaults: { _controller: AutomatizApiBundle:MeApi:getCocktails, _format: json}
+    methods: [GET]

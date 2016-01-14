@@ -52,4 +52,26 @@ class UserApiController extends Controller
         $user = $userManager->findUserBy(array("id" => $id));
         return(array("user" => $user));
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function removeAction(Request $request, $id)
+    {
+        $userManager = $this->get("fos_user.user_manager");
+        $user = $userManager->findUserBy(array("id" => $id));
+
+        $response = new Response();
+
+        if($user != null) {
+            $userManager->deleteUser($user);
+            $response->setStatusCode(200);
+        } else {
+            $response->setStatusCode(404);
+        }
+
+        return $response;
+    }
 }

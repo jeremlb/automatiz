@@ -9,3 +9,10 @@ user_get:
     methods: [GET]
     requirements:
         id: "[a-z0-9]{13}"
+
+user_delete:
+    path:  users/{id}
+    defaults: { _controller: AutomatizApiBundle:UserApi:remove, _format: json}
+    methods: [DELETE]
+    requirements:
+        id: "[a-z0-9]{13}"

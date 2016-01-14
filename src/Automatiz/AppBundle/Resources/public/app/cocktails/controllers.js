@@ -1,34 +1,13 @@
 /**
  * Created by jeremi on 16/11/2015.
  */
-define(["angular", "lumx", "cocktails/services", "cocktails/filters"], function (angular) {
-var module = angular.module("cocktails.controllers", ["cocktails.services", "cocktails.filters", "lumx"]);
+define(["angular", "lumx", "common/services", "cocktails/services", "cocktails/filters"], function (angular) {
+var module = angular.module("cocktails.controllers", ["cocktails.services", "cocktails.filters", "common.services", "lumx"]);
 
 module.controller("CocktailsListCtrl", ["$scope", "ShareCocktail", "Cocktail", "LxProgressService",
 function ($scope, ShareCocktail, Cocktail, LxProgressService) {
     var cocktails = [];
     $scope.$emit("page-change", {page: "list-cocktail", title: "Liste de cocktails"});
-
-    function splitCocktailsRow(cocktails)
-    {
-        var cocktailsRows = [];
-        var cocktailRow = [];
-
-        for(var i = 0; i < cocktails.length; i += 1) {
-            if(i % 1 == 0 && i != 0) {
-                cocktailsRows.push(cocktailRow);
-                cocktailRow = [];
-                cocktailRow.push(cocktails[i]);
-            } else if((i + 1) >= cocktails.length) {
-                cocktailRow.push(cocktails[i]);
-                cocktailsRows.push(cocktailRow);
-            } else {
-                cocktailRow.push(cocktails[i]);
-            }
-        }
-
-        return cocktailsRows;
-    }
 
     $scope.shareFB = function (cocktailId) {
         ShareCocktail.facebook(cocktailId);
@@ -36,13 +15,6 @@ function ($scope, ShareCocktail, Cocktail, LxProgressService) {
 
     $scope.getTwitterUrl = function (cocktailId) {
         return ShareCocktail.twitter(cocktailId);
-    };
-
-    $scope.textSearch = function (cocktails, text, text2) {
-        console.log(cocktails);
-        console.log(text);
-        console.log(text2);
-        return cocktails;
     };
 
     $scope.cocktailsRows = splitCocktailsRow(cocktails);
@@ -226,5 +198,52 @@ function (LxNotificationService, Liquid, Cocktail, CocktailImage,  $location, $s
     }
 
 }]);
+
+module.controller("MyCocktailsListCtrl", ["$scope", "Me", "ShareCocktail", "LxProgressService",
+function ($scope, Me, ShareCocktail, LxProgressService) {
+    var cocktails = [];
+
+    $scope.$emit("page-change", {page: "list-cocktail", title: "Liste de mes cocktails"});
+
+    $scope.shareFB = function (cocktailId) {
+        ShareCocktail.facebook(cocktailId);
+    };
+
+    $scope.getTwitterUrl = function (cocktailId) {
+        return ShareCocktail.twitter(cocktailId);
+    };
+
+    $scope.cocktailsRows = splitCocktailsRow(cocktails);
+    $scope.cocktails = cocktails;
+
+    LxProgressService.circular.show("primary", "#progress");
+
+    Me.cocktails().then(function (response) {
+        cocktails = response.data.cocktails;
+        $scope.cocktails = cocktails;
+        $scope.cocktailsRows = splitCocktailsRow(cocktails);
+        LxProgressService.circular.hide();
+    });
+}]);
+
+function splitCocktailsRow(cocktails) {
+    var cocktailsRows = [];
+    var cocktailRow = [];
+
+    for(var i = 0; i < cocktails.length; i += 1) {
+        if(i % 1 == 0 && i != 0) {
+            cocktailsRows.push(cocktailRow);
+            cocktailRow = [];
+            cocktailRow.push(cocktails[i]);
+        } else if((i + 1) >= cocktails.length) {
+            cocktailRow.push(cocktails[i]);
+            cocktailsRows.push(cocktailRow);
+        } else {
+            cocktailRow.push(cocktails[i]);
+        }
+    }
+
+    return cocktailsRows;
+}
 
 });

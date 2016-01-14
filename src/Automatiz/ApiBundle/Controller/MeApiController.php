@@ -32,7 +32,6 @@ class MeApiController extends Controller
     public function getAction(Request $request)
     {
         $me = $this->getUser();
-
         return array("me" => $me);
     }
 
@@ -50,7 +49,17 @@ class MeApiController extends Controller
     public function getStatsAction(Request $request)
     {
         $me = $this->getUser();
-
         return array("stats" => $me->getStats());
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"cocktail_detail"})
+     * @param Request $request
+     * @return array
+     */
+    public function getCocktailsAction(Request $request)
+    {
+        $me = $this->getUser();
+        return array("cocktails" => $me->getCocktails());
     }
 }

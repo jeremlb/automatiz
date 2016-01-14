@@ -88,13 +88,18 @@ module.service("ShareCocktail", ["$location", function ($location) {
     var port = ($location.port() !== 80)? ":"+$location.port(): "";
     var url = $location.host() + port + "/share/";
 
+    url = "http://www.automatiz.fr/share/5696816e2f374";
+
     var text = 'An automatiz amazing cocktail';
 
     function shareFacebook(cocktailId) {
         FB.ui({
             method: 'feed',
-            link: url + cocktailId,
-            caption: text
+            link: url, //+ cocktailId,
+            name: 'Daiquiri',
+            picture: 'http://www.automatiz.fr/uploads/cocktails_pictures/570d6634895e17cca41ed3a059e9290c.jpeg',
+            caption: 'www.automatiz.fr',
+            description: 'Appelé aussi à tort "Daikiri", cette recette fût inventée en 1896 par l\'ingénieur "Pagliuchi" quand il visita une mine de fer nommée "Daïquirí" à l\'est de Cuba, où travaillait "Jennings S. Cox", un ingénieur américain. La journée de travail terminée, Pagliuchi proposa de boire un verre.'
         }, function(response){});
     }
 

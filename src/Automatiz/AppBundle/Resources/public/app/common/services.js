@@ -1,13 +1,24 @@
 define(["angular"], function (angular) {
     var module = angular.module("common.services", []);
 
-
-    module.service("User", ["$http", function ($http) {
+    module.service("Me", ["$http", function ($http) {
         var service = {
-            //me: me,
-            //stat:
+            me: me,
+            stats: stats,
+            cocktails: cocktails
         };
 
+        function me() {
+            return $http.get("/api/me");
+        }
+
+        function stats() {
+            return $http.get("/api/me/stats");
+        }
+
+        function cocktails() {
+            return $http.get("/api/me/cocktails");
+        }
 
         return service;
     }]);

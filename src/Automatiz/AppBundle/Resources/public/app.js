@@ -48,6 +48,10 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
                 templateUrl: '/bundles/automatizapp/app/users/templates/list.html',
                 controller: "ListCtrl",
                 controllerAs: "listusers"
+            })
+            .when('/me/cocktails', {
+                templateUrl: '/bundles/automatizapp/app/cocktails/templates/cocktails.html',
+                controller: "MyCocktailsListCtrl"
             });
     }]);
 
