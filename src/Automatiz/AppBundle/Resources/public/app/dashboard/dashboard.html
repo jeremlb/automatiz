@@ -24,63 +24,23 @@
 <div class="main-section__content">
     <div flex-container="row" flex-gutter="24" flex-wrap>
         <div flex-item="6">
-            <span class="fs-title display-block mb">Text only</span>
+            <div class="card dashboard-card">
+                <div class="p+">
+                    <span class="fs-title display-block mb">Cocktail créé</span>
 
-            <div class="divider divider--dark"></div>
+                    <div class="divider divider--dark"></div>
 
-            <ul class="list mt++">
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                    <ul class="list mt++">
 
-        <div flex-item="6">
-            <span class="fs-title display-block mb">Icon with text</span>
+                        <li class="list-row list-row--has-separator" ng-repeat="cocktail in cocktails">
+                            <div class="list-row__content">
+                                <span>{{cocktail.name}} <a href="/cocktails/{{cocktail.id}}" class="btn btn--s btn--blue btn--fab" style="margin-top: -2px;float: right;" lx-ripple><i class="mdi mdi-plus"></i></a></span>
 
-            <div class="divider divider--dark"></div>
-
-            <ul class="list mt++">
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__primary">
-                        <i class="icon icon--s icon--grey icon--flat mdi mdi-send"></i>
-                    </div>
-
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__primary">
-                        <i class="icon icon--s icon--grey icon--flat mdi mdi-pencil"></i>
-                    </div>
-
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-                <li class="list-row list-row--has-separator">
-                    <div class="list-row__primary">
-                        <i class="icon icon--s icon--grey icon--flat mdi mdi-bell"></i>
-                    </div>
-
-                    <div class="list-row__content">
-                        <span>Single-line item</span>
-                    </div>
-                </li>
-            </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div flex-item="6">
@@ -106,3 +66,14 @@
         </div>
     </div>
 </div>
+<div class="fab cocktail-button">
+    <button class="fab__primary btn btn--xl btn--blue btn--fab" lx-ripple>
+        <i class="mdi mdi-plus"></i>
+        <i class="mdi mdi-minus"></i>
+    </button>
+
+    <div class="fab__actions fab__actions--up">
+        <a href="/cocktails/new" class="btn btn--l btn--black btn--fab" lx-ripple lx-tooltip="Créer un cocktail" tooltip-position="left"><i class="mdi mdi-beer"></i></a>
+    </div>
+</div>
+
