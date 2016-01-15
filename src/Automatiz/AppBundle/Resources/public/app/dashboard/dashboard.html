@@ -64,7 +64,7 @@
                         </li>
                         <li class="list-row list-row--has-separator">
                             <div class="list-row__content">
-                                <span>Vous avez commandé {{(stats|filter:query).length}} cocktail</span>
+                                <span>Vous avez commandé {{(stats|filter:query).length}} cocktails</span>
                             </div>
                         </li>
                     </ul>
@@ -82,7 +82,7 @@
 
                         <li class="list-row list-row--has-separator" ng-repeat="stat in stats">
                             <div class="list-row__content">
-                                <span>{{stat.cocktail.name}} - {{ stat.created_at | date : "d/m/yyyy - HH:MM:ss"}}</span>
+                                <span>{{stat.cocktail.name}} - {{ stat.created_at | date : "d/MM/yyyy - HH:m:ss"}}</span>
                             </div>
                         </li>
                     </ul>
