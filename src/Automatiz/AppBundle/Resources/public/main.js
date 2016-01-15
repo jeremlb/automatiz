@@ -10,6 +10,8 @@ requirejs.config({
         "lumx": "../bower_components/lumx/dist/lumx",
         "moment-with-locales": "../bower_components/moment/min/moment-with-locales",
         "velocity": "../bower_components/velocity/velocity",
+        "angular-material-icons": "../lib/angular-material-icons/angular-material-icons",
+        "svg-morpheus": "../bower_components/svg-morpheus/compile/minified/svg-morpheus",
         "css": "../bower_components/require-css/css.min",
         "facebook": '//connect.facebook.net/en_US/sdk'
     },
@@ -33,6 +35,10 @@ requirejs.config({
             deps: ["angular"],
             exports: "angular-route"
         },
+        "angular-material-icons": {
+            deps: ["angular", "svg-morpheus"],
+            exports: "angular-material-icons"
+        },
         "facebook": {
             exports: "FB"
         }
@@ -44,6 +50,7 @@ window.name = 'NG_DEFER_BOOTSTRAP!';
 requirejs([ "angular", "../app", "angular-route", "lumx",
         "css!../css/lumx",
         "css!../bower_components/chartist/dist/chartist.min",
+        "css!../lib/angular-material-icons/angular-material-icons",
         "css!../css/font-roboto"],
             function (angular, app) {
     'use strict';
