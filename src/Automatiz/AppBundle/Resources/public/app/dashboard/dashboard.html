@@ -26,7 +26,10 @@
         <div flex-item="6">
             <div class="card dashboard-card">
                 <div class="p+">
-                    <span class="fs-title display-block mb">Cocktail créé</span>
+                    <span class="fs-title display-block mb">
+                        Cocktail créé
+                        <a href="/me/cocktails" class="btn btn--s btn--blue btn--flat" lx-ripple style="float:right;">Mes cocktails</a>
+                    </span>
 
                     <div class="divider divider--dark"></div>
 
@@ -42,25 +45,47 @@
                 </div>
             </div>
         </div>
-
         <div flex-item="6">
             <div class="card dashboard-card">
                 <div class="p+">
-                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
+                    <span class="fs-title display-block mb">Statistiques</span>
+
+                    <div class="divider divider--dark"></div>
+                    <ul class="list mt++">
+                        <li class="list-row list-row--has-separator">
+                            <div class="list-row__content">
+                                <span>Vous avez créé {{(cocktails|filter:query).length}} cocktails</span>
+                            </div>
+                        </li>
+                        <li class="list-row list-row--has-separator">
+                            <div class="list-row__content">
+                                <span>Vous avez noté {{notes}} cocktails</span>
+                            </div>
+                        </li>
+                        <li class="list-row list-row--has-separator">
+                            <div class="list-row__content">
+                                <span>Vous avez commandé {{(stats|filter:query).length}} cocktail</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div flex-item="4">
+        <div flex-item="6">
             <div class="card dashboard-card">
                 <div class="p+">
-                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
-                </div>
-            </div>
-        </div>
-        <div flex-item="3">
-            <div class="card dashboard-card">
-                <div class="p+">
-                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
+                    <span class="fs-title display-block mb">Cocktail commandé</span>
+
+                    <div class="divider divider--dark"></div>
+
+                    <ul class="list mt++">
+
+                        <li class="list-row list-row--has-separator" ng-repeat="stat in stats">
+                            <div class="list-row__content">
+                                <span>{{stat.cocktail.name}} - {{ stat.created_at | date : "d/m/yyyy - HH:MM:ss"}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

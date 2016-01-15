@@ -6,7 +6,8 @@ define(["angular", "angular-chart", "common/services"], function (angular) {
                console.log(response.data);
                 $scope.cocktails = response.data.cocktails;
                 $scope.notes = response.data.notes;
-                //$scope.stats =
+                $scope.stats = response.data.stats;
+                console.log($scope.stats)
             });
             $scope.barData = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
