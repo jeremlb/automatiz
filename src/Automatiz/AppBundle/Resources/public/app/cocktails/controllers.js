@@ -4,8 +4,11 @@
 define(["angular", "lumx", "common/services", "cocktails/services", "cocktails/filters"], function (angular) {
 var module = angular.module("cocktails.controllers", ["cocktails.services", "cocktails.filters", "common.services", "lumx"]);
 
-module.controller("CocktailsListCtrl", ["$scope", "ShareCocktail", "Cocktail", "LxProgressService",
-function ($scope, ShareCocktail, Cocktail, LxProgressService) {
+module.controller("CocktailsListCtrl", [
+    "$scope",
+    "ShareCocktail", "Cocktail", "Liquid",
+    "LxProgressService",
+function ($scope, ShareCocktail, Cocktail, Liquid, LxProgressService) {
     var cocktails = [];
     $scope.$emit("page-change", {page: "list-cocktail", title: "Liste de cocktails"});
 
@@ -17,17 +20,39 @@ function ($scope, ShareCocktail, Cocktail, LxProgressService) {
         return ShareCocktail.twitter(cocktailId);
     };
 
+    $scope.filterByBeverage = function (values) {
+        var params = {};
+
+        if(values.newValue) {
+            params.liquid = values.newValue.name;
+        }
+        $scope.cocktails = [];
+        $scope.searchInProgress = true;
+        LxProgressService.circular.show("primary", "#progress");
+        Cocktail.query(params)
+            .then(function (response) {
+                $scope.cocktails = response.data.cocktails;
+                $scope.searchInProgress = false;
+                LxProgressService.circular.hide();
+            });
+    };
+
     $scope.cocktailsRows = splitCocktailsRow(cocktails);
     $scope.cocktails = cocktails;
 
     LxProgressService.circular.show("primary", "#progress");
 
+    $scope.searchInProgress = true;
     Cocktail.query().then(function (response) {
-        cocktails = response.data.cocktails;
-        $scope.cocktails = cocktails;
-        $scope.cocktailsRows = splitCocktailsRow(cocktails);
+        $scope.cocktails = response.data.cocktails;
+        $scope.searchInProgress = false;
         LxProgressService.circular.hide();
     });
+
+    Liquid.query().$promise.then(function (response) {
+        $scope.liquids = response.liquids;
+    });
+
 }]);
 
 module.controller("CocktailsGetCtrl", [

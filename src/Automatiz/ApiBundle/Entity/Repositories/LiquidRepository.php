@@ -18,10 +18,11 @@ class LiquidRepository extends EntityRepository
 
         $qb->where($qb->expr()->like('LOWER(c.name)', '?1'));
 
-        return $qb
-            ->setParameter(1, "%".strtolower($liquid)."%")
-            ->getQuery()
-            ->getResult()
-            ;
+//        return $qb
+//            ->setParameter(1, "%".strtolower($liquid)."%")
+//            ->getQuery()
+//            ->getResult()
+//            ;
+        return null;
     }
 }

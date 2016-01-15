@@ -23,8 +23,6 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
             requireBase: false
         });
 
-
-        console.log("coucou");
         $routeProvider.
             when('/', {
                 templateUrl: '/bundles/automatizapp/app/dashboard/dashboard.html',

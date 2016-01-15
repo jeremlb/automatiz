@@ -4,7 +4,6 @@ define(["angular"], function (angular) {
         return function (list, search) {
             var result = [];
 
-            console.log(search);
             if(search !== undefined) {
                 for(var i = 0; i < list.length; i += 1) {
                     if(list[i].name.toUpperCase().indexOf(search.toUpperCase()) > -1 ) {

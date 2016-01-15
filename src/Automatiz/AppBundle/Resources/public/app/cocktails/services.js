@@ -13,9 +13,15 @@ module.service("Cocktail", ["$http", function ($http) {
 
     var url = '/api/cocktails/:id';
 
-    function query() {
+    function query(params) {
+        var urlparams = {};
+        if(params && params.liquid) {
+            urlparams["liquid"] = params.liquid;
+        }
         var uri = url.replace("/:id", "");
-        return $http.get(uri);
+        return $http.get(uri, {
+            params: urlparams
+        });
     }
 
     function get(param) {

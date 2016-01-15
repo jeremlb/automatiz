@@ -1,15 +1,41 @@
 <div class="main-section__content">
-    <div id="progress" class="progress"></div>
-    <div flex-container="row" flex-gutter="24" class="row-container" ng-show="cocktailsRows.length > 0">
+    <div flex-container="row" flex-gutter="24" class="row-container">
         <div flex-item>
             <div class="card">
-                <div class="toolbar">
-                    <lx-search-filter model="searchFilter" filter-width="100%" placeholder="Rechercher" style="width:100%;"></lx-search-filter>
+                <div class="toolbar" >
+                    <div flex-container="row" flex-gutter="24" class="row-container" style="width:100%">
+                        <div flex-item>
+                            <lx-search-filter model="searchFilter" filter-width="100%" placeholder="Rechercher par nom" ></lx-search-filter>
+                        </div>
+                        <div flex-item>
+                            <lx-select
+                                    placeholder="Sélectionner une boisson"
+                                    choices="liquids"
+                                    ng-model="selectedBeverage"
+                                    change="filterByBeverage(newValue)"
+                                    floating-label
+                                    style="color:black;padding:0;padding-top:8px"
+                                    allow-clear="true">
+                                <lx-select-selected>
+                                    {{ $selected.name }}
+                                </lx-select-selected>
+
+                                <lx-select-choices>
+                                    {{ $choice.name }}
+                                </lx-select-choices>
+                            </lx-select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div flex-container="row" flex-gutter="24">
+        <div flex-item="12" ng-hide="searchInProgress">
+            {{ cocktails.length }} Résultat<span ng-if="cocktails.length > 1">s</span> trouvé<span ng-if="cocktails.length > 1">s</span>
+        </div>
+    </div>
+    <div id="progress" class="progress"></div>
     <div flex-container="row" flex-gutter="24" class="row-container" ng-repeat="cocktail in cocktails | cocktailsearch:searchFilter">
         <div flex-item="12">
             <div class="card">

@@ -35,7 +35,9 @@ class CocktailApiController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $status = false;
+
         $cocktails = [];
+
         if($request->query->get('name') !== null) {
             $status = true;
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAllByName($request->query->get('name'));
@@ -43,13 +45,44 @@ class CocktailApiController extends Controller
 
         if($request->query->get('liquid') !== null) {
             $status = true;
-            $cocktails = $em->getRepository('AutomatizApiBundle:Liquid')->findCocktailsByLiquid($request->query->get('liquid'));
+            $repository = $em->getRepository('AutomatizApiBundle:Liquid');
+            $stepRepository = $em->getRepository('AutomatizApiBundle:Step');
+
+            $qb = $repository->createQueryBuilder('c');
+            $liquids = $qb->where($qb->expr()->like('LOWER(c.name)', '?1'))
+                ->setParameter(1, "%".mb_strtolower($request->query->get('liquid'), "UTF-8")."%")
+                ->getQuery()
+                ->getResult();
+
+            $cocktails = [];
+            $steps = [];
+
+            foreach($liquids as $liquid) {
+                $steps = array_merge($steps, $stepRepository->findBy(array(
+                    'liquid' => $liquid->getId()
+                )));
+            }
+
+            foreach($steps as $step) {
+                $cocktail = $step->getCocktail();
+
+                $state = false;
+
+                foreach($cocktails as $c) {
+
+                    if($c->getId() == $cocktail->getId()) {
+                        $state = true;
+                    }
+                }
+
+                if($state == false) {
+                    $cocktails[] = $cocktail;
+                }
+            }
         }
 
         if($status == false) {
             $cocktails = $em->getRepository('AutomatizApiBundle:Cocktail')->findAll();
-        } else {
-
         }
 
         return array('cocktails' => $cocktails);
