@@ -23,12 +23,11 @@
     "requirejs-plugins": "~1.0.3",
     "angular-route": "~1.4.7",
     "require-css": "~0.1.8",
-    "Chart.js": "chartjs#~1.0.2",
-    "angular-chart.js": "~0.8.5",
-    "Materialize": "materialize#~0.97.1",
-    "angular-accordion": "ang-accordion#*",
-    "material-calendar": "~0.2.12",
-    "angular-ui-calendar": "~1.0.1",
-    "angular-resource": "~1.4.8"
+    "angular-resource": "~1.4.8",
+    "angular-chartist.js": "~3.3.12",
+    "mdi": "1.4.0"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
   }
 }

@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  */
 
-define(["angular", "angular-material-icons"], function (angular) {
+define(["angular"], function (angular) {
     'use strict';
     angular.module('angAccordion', ['collapsibleItem'])
         .controller('angAccordionController', ['$scope', function($scope){
@@ -57,7 +57,7 @@ define(["angular", "angular-material-icons"], function (angular) {
             };
         });
 
-    angular.module('collapsibleItem', ["ngMdIcons"])
+    angular.module('collapsibleItem', [])
         .directive('collapsibleItem', function() {
             return {
                 require: '^angAccordion',

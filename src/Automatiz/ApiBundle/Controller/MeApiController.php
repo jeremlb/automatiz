@@ -49,7 +49,20 @@ class MeApiController extends Controller
     public function getStatsAction(Request $request)
     {
         $me = $this->getUser();
-        return array("stats" => $me->getStats());
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $notes = $em->getRepository("AutomatizApiBundle:Note")->findBy(array(
+           'user' => $me->getId()
+        ));
+
+        $cocktail = $em->getRepository("AutomatizApiBundle:Cocktail")->findBy(array(
+            'user' => $me->getId()
+        ));
+
+        return array(
+            "cocktails" => $cocktail,
+            "notes" => sizeof($notes),
+            "stats" => $me->getStats());
     }
 
     /**

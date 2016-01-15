@@ -2,18 +2,11 @@ requirejs.config({
     baseUrl: "/bundles/automatizapp/app",
     paths: {
         "jquery": "../bower_components/jquery/dist/jquery.min",
-        "chart": "../bower_components/Chart.js/Chart.min",
-        "angular-chart": "../bower_components/angular-chart.js/dist/angular-chart.min",
+        "angular-chart": "../bower_components/angular-chartist.js/dist/angular-chartist.min",
+        "chartist": "../bower_components/chartist/dist/chartist.min",
         "angular": "../bower_components/angular/angular",
         "angular-route": "../bower_components/angular-route/angular-route.min",
-        "angular-ui-router": "../bower_components/angular-ui-router/release/angular-ui-router.min",
-        "angular-aria": "../bower_components/angular-aria/angular-aria.min",
-        "angular-sanitize": "../bower_components/angular-sanitize/angular-sanitize.min",
-        "angular-material-icons": "../lib/angular-material-icons/angular-material-icons",
-        "angular-material": "../bower_components/angular-material/angular-material.min",
-        "angular-animate":  "../bower_components/angular-animate/angular-animate.min",
         "angular-resource": "../bower_components/angular-resource/angular-resource.min",
-        "svg-morpheus": "../bower_components/svg-morpheus/compile/minified/svg-morpheus",
         "lumx": "../bower_components/lumx/dist/lumx",
         "moment-with-locales": "../bower_components/moment/min/moment-with-locales",
         "velocity": "../bower_components/velocity/velocity",
@@ -25,44 +18,16 @@ requirejs.config({
             exports: 'angular'
         },
         "lumx": {
-            deps: ["angular", "jquery", "moment-with-locales", "velocity"],
+            deps: ["velocity", "angular", "jquery", "moment-with-locales"],
             exports: "lumx"
-        },
-        "angular-aria": {
-            deps: ["angular"],
-            exports: "angular-aria"
-        },
-        "angular-animate": {
-            deps: ["angular"],
-            exports: "angular-animate"
         },
         "angular-resource": {
             deps: ["angular"],
             exports: "angular-resource"
         },
-        "angular-ui-router": {
-            deps: ["angular"],
-            exports: "angular-ui-router"
-        },
-        "angular-sanitize": {
-            deps: ["angular", "angular-aria"],
-            exports: "angular-sanitize"
-        },
-        "material-calendar": {
-            deps: ["angular", "angular-material", "angular-sanitize"],
-            exports: "angular-sanitize"
-        },
-        "angular-material": {
-            deps: ["angular", "angular-aria", "angular-animate"],
-            exports: "angular-material"
-        },
         "angular-chart": {
-            deps: ["angular"],
+            deps: ["chartist", "angular"],
             exports: "angular-chart"
-        },
-        "angular-material-icons": {
-            deps: ["angular", "svg-morpheus"],
-            exports: "angular-material-icons"
         },
         "angular-route": {
             deps: ["angular"],
@@ -76,15 +41,11 @@ requirejs.config({
 
 window.name = 'NG_DEFER_BOOTSTRAP!';
 
-requirejs([ "angular", "../app", "angular-route", "lumx", "angular-material",
-        //"fb",
+requirejs([ "angular", "../app", "angular-route", "lumx",
         "css!../css/lumx",
-        "css!../bower_components/angular-chart.js/dist/angular-chart.min",
-        "css!../lib/angular-material-icons/angular-material-icons",
-        "css!../bower_components/angular-material/angular-material.min",
-        "css!../bower_components/angular-material/angular-material.layouts.min",
+        "css!../bower_components/chartist/dist/chartist.min",
         "css!../css/font-roboto"],
-            function (angular, app, ngRoutes, lumx) {
+            function (angular, app) {
     'use strict';
 
     angular.bootstrap(document, [app.name]);

@@ -1,5 +1,5 @@
 /*jshint unused: vars */
-define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', 'common/controller', "angular-material-icons", "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
+define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 'common/header/controller', 'common/controller', "users/controllers", "cocktails/controllers"]/*deps*/, function (angular, lumx)/*invoke*/ {
     'use strict';
 
     /**
@@ -9,7 +9,7 @@ define(['angular', 'lumx', 'dashboard/controller', 'common/sidebar/controller', 
             'lumx',
             'ngRoute',
             'Dashboard',
-            'ngMdIcons',
+            //'ngMdIcons',
             'common.header',
             'common.sidebar',
             'common.controller',

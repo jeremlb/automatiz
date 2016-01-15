@@ -1,78 +1,106 @@
-<div class="main-section__content">
-    <div flex-container="row" flex-gutter="24">
-        <div flex-item="12">
-            <div class="card">
-                <div class="p+">
-                    <strong class="fs-headline display-block">Lorem Ipsum</strong>
-                    <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
+<!--<div class="main-section__content">-->
+    <!--<div flex-container="row" flex-gutter="24">-->
+        <!--<div flex-item="12">-->
+            <!--<div class="card">-->
+                <!--<div class="p+">-->
+                    <!--<strong class="fs-headline display-block">Lorem Ipsum</strong>-->
+                    <!--<span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>-->
 
-                    <div class="paragraph fs-body-1 mt+">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
-                        </p>
+                    <!--<div class="paragraph fs-body-1 mt+">-->
+                        <!--<p>-->
+                            <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="card__actions">-->
+                    <!--<button class="btn btn&#45;&#45;m btn&#45;&#45;black btn&#45;&#45;flat" lx-ripple>Yes</button>-->
+                    <!--<button class="btn btn&#45;&#45;m btn&#45;&#45;orange btn&#45;&#45;flat" lx-ripple>No</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="main-section__content">
+    <div flex-container="row" flex-gutter="24" flex-wrap>
+        <div flex-item="6">
+            <span class="fs-title display-block mb">Text only</span>
+
+            <div class="divider divider--dark"></div>
+
+            <ul class="list mt++">
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
                     </div>
-                </div>
+                </li>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
+                    </div>
+                </li>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-                <div class="card__actions">
-                    <button class="btn btn--m btn--black btn--flat" lx-ripple>Yes</button>
-                    <button class="btn btn--m btn--orange btn--flat" lx-ripple>No</button>
+        <div flex-item="6">
+            <span class="fs-title display-block mb">Icon with text</span>
+
+            <div class="divider divider--dark"></div>
+
+            <ul class="list mt++">
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__primary">
+                        <i class="icon icon--s icon--grey icon--flat mdi mdi-send"></i>
+                    </div>
+
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
+                    </div>
+                </li>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__primary">
+                        <i class="icon icon--s icon--grey icon--flat mdi mdi-pencil"></i>
+                    </div>
+
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
+                    </div>
+                </li>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__primary">
+                        <i class="icon icon--s icon--grey icon--flat mdi mdi-bell"></i>
+                    </div>
+
+                    <div class="list-row__content">
+                        <span>Single-line item</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div flex-item="6">
+            <div class="card dashboard-card">
+                <div class="p+">
+                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="main-section__content">
-    <div flex-container="row" flex-gutter="24">
-        <div flex-item="3">
-            <div class="card">
-                TEST <br/>
-                TEST <br/>
-            </div>
-        </div>
-        <div flex-item="3">
-            <div class="card">
-                TEST <br/>
-                TEST <br/>
-            </div>
-        </div>
-        <div flex-item="3">
-            <div class="card">
-                TEST <br/>
-                TEST <br/>
-            </div>
-        </div>
-        <div flex-item="3">
-            <div class="card">
-                TEST <br/>
-                TEST <br/>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="main-section__content">
-    <div flex-container="row" flex-gutter="24">
         <div flex-item="4">
-            <div class="card">
-                <ul class="collection with-header">
-                    <li class="collection-header"><h4>First Names</h4></li>
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                </ul>
+            <div class="card dashboard-card">
+                <div class="p+">
+                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="main-section__content">
-    <div flex-container="row" flex-gutter="24">
-        <div flex-item="12">
-            <div class="card">
+        <div flex-item="3">
+            <div class="card dashboard-card">
                 <div class="p+">
-                    <canvas id="line" class="chart chart-line" chart-data="data"
-                            chart-labels="labels" chart-legend="true" chart-series="series"
-                            chart-click="onClick" height="100px">
-                    </canvas>
+                    <chartist class="ct-chart" chartist-data="barData" chartist-chart-type="Bar"></chartist>
                 </div>
             </div>
         </div>

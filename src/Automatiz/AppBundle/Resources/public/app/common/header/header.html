@@ -14,29 +14,24 @@
         </button>
     </nav>
     <nav class="main-nav main-nav--palm">
-<!--        <button class="btn btn&#45;&#45;s btn&#45;&#45;white btn&#45;&#45;flat" lx-ripple>
-            <i class="icon icon&#45;&#45;s icon&#45;&#45;white icon&#45;&#45;flat mdi mdi-email"></i>
-            <span class="notifications-label notifications-label-10">1</span>
-        </button>-->
         <button class="btn btn--s btn--white btn--flat" lx-ripple>
-            <i class="icon icon--s icon--white icon--flat mdi mdi-bell"></i>
+            <i class="icon icon--s icon--white icon--flat mdi mdi-bell-ring-outline"></i>
             <span class="notifications-label notifications-label-15">0</span>
         </button>
-        <button class="btn btn--s btn--white btn--flat" lx-ripple>
-            <i class="icon icon--s icon--white icon--flat mdi mdi-settings"></i>
-        </button>
-    </nav>
-    <nav class="main-nav main-nav--palm">
-        <lx-dropdown>
+        <lx-dropdown position="right">
             <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dropdown-toggle>
-                <i class="icon icon--s icon--grey icon--flat mdi mdi-account"></i>
-                {{me.firstname}}
+                <i class="icon icon--s icon--white icon--flat mdi mdi-store-24-hour"></i>
             </button>
             <lx-dropdown-menu>
                 <ul>
-                    <li><a href="/logout" class="dropdown-link">Log out</a></li>
+                    <li><a href="/logout" class="dropdown-link">Se déconnecter</a></li>
+                    <li><a href="/profile/change-password" class="dropdown-link">Changer de mot de passe</a></li>
                 </ul>
             </lx-dropdown-menu>
         </lx-dropdown>
+    </nav>
+    <nav class="main-nav main-nav--palm" style="margin-right: 20px;">
+        <i class="icon icon--s icon--grey icon--flat mdi mdi-account-box"></i>
+        <span style="padding-top: 3px;display: inline-block;">{{me.firstname}}</span>
     </nav>
 </header>
